@@ -1,0 +1,7 @@
+{
+  "name": "Hymns",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
