@@ -1,0 +1,223 @@
+.ereNoteBody {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    font-family:"montserrat";
+}
+.noteBox{
+    width: 100%;
+    height: auto;
+    margin: 6px 0px;
+    display: flex;
+    flex-direction: row;
+}
+.bar{
+    width: 2%;
+    height: auto;
+}
+.innerNoteBox {
+    width: 98%;
+    height: auto;
+    padding: 0px 8px;
+    position: relative;
+}
+
+.note {
+    width: 100%;
+    height: 100%;
+    padding: 6px 10px 0px 10px;
+    position: relative;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.09),
+    0 6px 20px 0 rgba(0, 0, 0, 0.08); */
+}
+
+.note p{
+    font-size: 1rem;
+    word-break: break-all;
+}
+
+
+/* .note{
+    background: rgb(205, 255, 215);
+} */
+
+.time{
+    padding: 5px;
+    font-size: 0.4rem;
+}
+
+/* .trash{
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+.trash button {
+    border-radius: 100%;
+    border: none;
+    background: none;
+}
+.trash button ion-icon {
+    zoom: 1.1;
+} */
+
+.ereNoteBody .noteBox:nth-of-type(1) .note {
+    color: #463224 !important;
+    background: #fad9c1 !important;
+}
+.ereNoteBody .noteBox:nth-of-type(1) .bar {
+    background: linear-gradient(0deg,
+    #ffaaa6 0%,
+    #fad9c1 59%,
+    #fad9c1 100%) !important;
+}
+.ereNoteBody .noteBox:nth-of-type(even) .note {
+    color: white;
+    background: #ff7b89;
+}
+.ereNoteBody .noteBox:nth-of-type(even) .bar {
+    background: linear-gradient(0deg,
+    #f8956f 0%,
+    #ff7b89 59%,
+    #ff7b89 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(odd) .note{
+    color: white;
+    background: #f8956f;
+}
+.ereNoteBody .noteBox:nth-of-type(odd) .bar {
+    background: linear-gradient(0deg,
+    #7facd6 0%,
+    #f8956f 59%,
+    #f8956f 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(4n) .note{
+    color: white;
+    background: #7facd6;
+}
+.ereNoteBody .noteBox:nth-of-type(4n) .bar {
+    background: linear-gradient(0deg,
+    #9e5c82 0%,
+    #7facd6 59%,
+    #7facd6 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(5n) .note{
+    color: white;
+    background: #9e5c82;
+}
+.ereNoteBody .noteBox:nth-of-type(5n) .bar {
+    background: linear-gradient(0deg,
+    #138086 0%,
+    #9e5c82 59%,
+    #9e5c82 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(6n) .note{
+    color: white;
+    background: #138086;
+}
+.ereNoteBody .noteBox:nth-of-type(6n) .bar {
+    background: linear-gradient(0deg,
+    #c9bbc8 0%,
+    #138086 59%,
+    #138086 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(7n) .note{
+    color: black;
+    background: #c9bbc8;
+}
+.ereNoteBody .noteBox:nth-of-type(7n) .bar {
+    background: linear-gradient(0deg,
+    #f5cec7 0%,
+    #c9bbc8 59%,
+    #c9bbc8 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(8n) .note{
+    color: black;
+    background: #f5cec7;
+}
+.ereNoteBody .noteBox:nth-of-type(8n) .bar {
+    background: linear-gradient(0deg,
+    #d1d1d1 0%,
+    #f5cec7 59%,
+    #f5cec7 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(9n) .note{
+    color: black;
+    background: #d1d1d1;
+}
+.ereNoteBody .noteBox:nth-of-type(9n) .bar {
+    background: linear-gradient(0deg,
+    #455054 0%,
+    #d1d1d1 59%,
+    #d1d1d1 100%);
+}
+.ereNoteBody .noteBox:nth-of-type(10n) .note{
+    color: white;
+    background: #455054;
+}
+.ereNoteBody .noteBox:nth-of-type(10n) .bar {
+    background: linear-gradient(0deg,
+    #fad9c1 0%,
+    #455054 59%,
+    #455054 100%);
+}
+
+@media (min-width: 700px) {
+    .ereNoteBody {
+        flex-wrap: wrap;
+        flex-direction: unset;
+        justify-content: space-evenly;
+    }
+    .noteBox{
+        width: 40%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .ereNoteBody {
+        width: 60%
+    }
+    .noteBox{
+        width: 40%;
+    }
+}
+/* 
+*   i had issue applying it directly on the .note class so I addeded the effect class to the 
+ innerNoteBox that holds the note box and added a z-index to it.
+* this should be checked later in the future for proper corection
+*
+*
+*/
+.myeffect {
+    position: relative;
+    z-index: 2;/* I added this:   Do well to remove it later*/
+}
+.myeffect:before, .myeffect:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform:  rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+}
+.myeffect:after {
+    -webkit-transform:  rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+}

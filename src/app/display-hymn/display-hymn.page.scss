@@ -1,0 +1,23 @@
+#displayHymnBox {
+    width: 100%;
+    height: auto;
+    scroll-behavior: auto;
+    overflow-y: scroll;
+  }
+  
+  #displayHymnBox div {
+    white-space: pre;
+    font-size: 0.9rem;
+    color: black;
+    font-family: "montserrat";
+    /*letter-spacing: 2px;*/
+    line-height: 20px;
+    padding-right: 40px;
+  }
+  
+  #displayHymnBox pre {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-style: italic !important;
+    margin: -15px 0px !important;
+  }

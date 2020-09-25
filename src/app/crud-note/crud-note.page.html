@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="addNoteheader">
+    <ion-buttons slot="start">
+      <ion-button (click)="gobackAndSave()">
+        <ion-icon slot="icon-only" name="arrow-back" id="backbutton"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  
+    <ion-title>Add note</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="addnote">
+     <input type="text" placeholder="Title" [(ngModel)]="title">
+     <textarea placeholder="Note" 
+     (keyup)="textareaAutoIncrease($event)" 
+     #mytextarea
+     [(ngModel)]="note"></textarea><!--  cols="30" rows="10" -->
+  </div>
+</ion-content>
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar color="dark">
+    <ion-title>saving..</ion-title>
+  </ion-toolbar>
+</ion-footer> -->

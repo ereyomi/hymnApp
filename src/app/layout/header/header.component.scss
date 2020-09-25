@@ -1,0 +1,84 @@
+.header, .headerTwo {
+    background: #2279be;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+   
+    z-index: 10;
+}
+.header {
+    display: flex;
+    padding: 20px 15px;
+}
+.headerTwo {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    padding: 15px 15px;
+}
+.logo {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+    /* center for grid */
+    align-self: center;
+    justify-self: center;
+    /* center for content -- display: flex */
+    justify-content: center;
+    align-items: center;
+    /* width: 50%; */
+}
+.logo h3 {
+    color: white;
+}
+
+.logoImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    /*to push the he text*/
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: white;
+    overflow: auto;
+    -webkit-box-shadow: 0px -1px 41px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px -1px 41px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px -1px 41px 0px rgba(0, 0, 0, 0.75);
+}
+
+.logoImg img {
+    width: 70%;
+}
+
+.logo h3 {
+    margin: 0;
+    font-family: "montserrat";
+    font-size: 0.8rem;
+}
+#back {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#backbutton {
+    border: none;
+    background: none;
+    font-size: 30px;
+    color:white;
+    padding: none;
+    outline: none !important;
+}
+.fav {
+    /* center for grid */
+    align-self: center;
+    justify-self: center;
+}
+.favBtn {
+    zoom: 2;
+    --color: white;
+ }
+.favIt {
+    color: tomato;
+}

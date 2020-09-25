@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="noteheader">
+    <!-- <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" defaultHref="{{ backHref }}"></ion-back-button>
+    </ion-buttons> -->
+    <ion-buttons slot="end">
+      <ion-button (click)="gotoAddPage()">
+        <!-- <ion-icon slot="icon-only" name="heart"></ion-icon> -->
+        <ion-icon slot="icon-only" name="add-circle" class="addNoteBtn"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>note</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <section class="ereNoteBody">
+
+    <div class="noteBox" *ngFor="let note of notes">
+      <div class="bar"></div>
+      <div class="innerNoteBox myeffect">
+          <div class="note" (click)="viewNote(note.id)">
+              <h1>{{ note.title }}</h1>
+              <p> {{ note.note | truncate }} <p>
+              <span class="time">{{ note.editted_at | mydate}}</span>
+          </div>
+          <!-- <div class="trash">
+            <button>
+              <ion-icon name="trash" (click)="deleteNote(note.id)"></ion-icon>
+            </button>
+          </div> -->
+      </div>
+  </div>
+
+  </section>
+  
+</ion-content>

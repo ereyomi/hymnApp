@@ -1,0 +1,66 @@
+#intro {
+    width: 100%;
+    height: auto;
+}
+
+.ere-displayBox {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: green;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ere-displayBox img {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    z-index: 2;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(34, 121, 190, 0.5);
+    z-index: 3;
+  }
+  
+  .fav-overlay {
+    background: rgba(22, 22, 22, 0.3) !important;
+  }
+  
+  .ere-displayBox p {
+    position: absolute;
+    bottom: 0;
+    z-index: 4;
+    font-family: "montserrat";
+    font-size: 0.8rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .ere-displayBox .text2 {
+    font-size: 13px;
+  }
+  
+  .line {
+    width: 100%;
+    height: 4px;
+    background: rgb(6, 179, 41);
+    background: linear-gradient(90deg,
+        rgba(6, 179, 41, 1) 0%,
+        rgba(17, 207, 209, 1) 59%,
+        rgba(0, 212, 255, 1) 100%);
+  }

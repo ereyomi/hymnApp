@@ -1,0 +1,27 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>favorite</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+ -->
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  
+
+  <app-intro></app-intro>
+  
+  <div class="list">
+    <ol *ngIf="favHymns">
+      <li *ngFor="let hymn of favHymns" (click)="openDetails($event, hymn.hymnId)">{{ hymn.hymn }}</li>
+    </ol>
+  </div>
+
+</ion-content>
+
