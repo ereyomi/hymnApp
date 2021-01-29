@@ -11,12 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HymysApiService } from './services/hymys-api.service';
 import { IndexedDbService } from './services/indexed-db.service';
 import { FormsModule } from '@angular/forms';
+import { HymnspipeModule } from './pipe/hymnspipe.module';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, HymnspipeModule],
   providers: [
     StatusBar,
     SplashScreen,

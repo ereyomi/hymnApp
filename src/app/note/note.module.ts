@@ -7,17 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { NotePageRoutingModule } from './note-routing.module';
 
 import { NotePage } from './note.page';
-
-import { TruncatePipe } from '../pipe/truncate.pipe';
 import { MydatePipe } from '../pipe/mydate.pipe';
+import { TruncatePipe } from '../pipe/truncate.pipe';
+import { HymnspipeModule } from '../pipe/hymnspipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotePageRoutingModule
+    NotePageRoutingModule,
+    HymnspipeModule
   ],
-  declarations: [NotePage, TruncatePipe, MydatePipe]
+  declarations: [NotePage],
 })
 export class NotePageModule {}

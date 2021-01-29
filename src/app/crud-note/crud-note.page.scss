@@ -11,7 +11,9 @@ $font: "montserrat";
 .addnote {
     width: $width;
 
-    input, textarea {
+    input, 
+    textarea,
+    ion-textarea {
         width: 100%;
         border: none;
         background: none;
@@ -26,7 +28,8 @@ $font: "montserrat";
     input {
         font-size: 2rem;
     }
-    textarea {
+    textarea,
+    ion-textarea {
         font-size: 1.3rem;
         /* resize: none; */
     }

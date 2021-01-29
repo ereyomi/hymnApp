@@ -9,29 +9,29 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./crud-note.page.scss'],
 })
 export class CrudNotePage implements OnInit {
-  @ViewChild('mytextarea', { static: false}) mytextarea: ElementRef;
+  @ViewChild('mytextarea', { static: false }) mytextarea: ElementRef;
 
   title = '';
   note = '';
   edit: any;
 
-  currentDate =  new Date();
+  currentDate = new Date();
   toSendData: {};
   setNoteId = 0;
 
   screenSize = window.screen.height ||
-  window.innerHeight || document.body.clientHeight
-  || document.documentElement.clientHeight;
+    window.innerHeight || document.body.clientHeight
+    || document.documentElement.clientHeight;
 
 
   constructor(private indexedDb: IndexedDbService,
-              private navCtrl: NavController,
-              private route: ActivatedRoute) { }
+    private navCtrl: NavController,
+    private route: ActivatedRoute) { }
 
-  setData({id = 0, title = '',
-  note = '', created_at = this.currentDate,
-  editted_at = this.currentDate}) {
-    if (id !== 0)  {
+  setData({ id = 0, title = '',
+    note = '', created_at = this.currentDate,
+    editted_at = this.currentDate }) {
+    if (id !== 0) {
       this.setNoteId = id;
     }
     const data = {
@@ -50,7 +50,7 @@ export class CrudNotePage implements OnInit {
       async (params: Params) => {
         if (!isNaN(+params.id)) {
           console.log(+params.id);
-          const data = {id: +params.id};
+          const data = { id: +params.id };
           this.toSendData = this.setData(data);
           console.log('this is what I set: ', this.toSendData);
 
@@ -67,15 +67,18 @@ export class CrudNotePage implements OnInit {
     );
   }
   textareaAutoIncrease(event) {
-    const textarea =  this.mytextarea.nativeElement;
+    const textarea = this.mytextarea.nativeElement;
 
     /* this is to get the position of the textarea bottom */
     const elWidth = textarea.getBoundingClientRect();
 
     if (this.screenSize > elWidth.bottom) {
       textarea.style.height = '';
-      textarea.style.height = `${Math.min(textarea.scrollHeight, this.screenSize)}px`;
+      textarea.style.height = `${ Math.min(textarea.scrollHeight, this.screenSize) }px`;
     }
+  }
+  updateNote(event: any) {
+    this.note = event.target.value;
   }
   async gobackAndSave() {
     console.log(this.title, this.note);
@@ -89,7 +92,7 @@ export class CrudNotePage implements OnInit {
     if (this.title === '' && this.note === '') {
       return false;
     } else {
-      const data: {} = {title: this.title, note: this.note};
+      const data: {} = { title: this.title, note: this.note };
       console.log(data);
       this.toSendData = this.setData(data);
       console.log('am sending this: ', this.toSendData);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -7,37 +7,31 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
 })
-export class SearchPage implements OnInit, AfterViewInit {
+export class SearchPage implements OnInit {
   theHymnsDb: any;
   searchResult: any;
   searchText: any;
   homeBackHref: any;
   searchbackHref = '/tabs/search';
   dom: any;
-  @ViewChild('hymnlist', { static: false }) hymnlist: ElementRef;
   allAvailablehymns: any;
-  constructor(private el: ElementRef, private route: ActivatedRoute) {
+  hymns: any;
+  constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
     this.route.data.subscribe(
-      (data) => this.allAvailablehymns = data.hymns
+      (data) => {
+        this.allAvailablehymns = data.hymns;
+        this.hymns = this.allAvailablehymns;
+      }
     );
   }
-  ngAfterViewInit() {
-    this.dom = this.el.nativeElement;
-  }
-  searchIt(event) {
+  searchIt(event: any) {
     this.searchText = event.target.value.toLowerCase();
-    const li: any = document.querySelectorAll('.searchBox ol li');
-    li.forEach(hymnli => {
-      const getli = hymnli.textContent;
-      if (getli.toLowerCase().indexOf(this.searchText) !== -1) {
-        hymnli.style.display = 'block';
-      } else {
-        hymnli.style.display = 'none';
-      }
+    this.hymns = this.allAvailablehymns.filter(v => {
+      return v.content.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
 

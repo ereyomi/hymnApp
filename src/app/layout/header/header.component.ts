@@ -29,19 +29,13 @@ export class HeaderComponent implements OnInit {
   constructor(private indexedDb: IndexedDbService, private router: Router, private navCtrl: NavController) {
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   goBack() {
-    // this.router.navigateByUrl(`/tabs/home`);
     this.navCtrl.navigateBack(`${this.toPage}`);
   }
   addOrRemoveFav() {
-    console.log('fav before clicked', this.favStatus);
-    console.log('fav clicked', this.favStatus);
-    console.log('hymn data: ', this.hymnData);
-    const toSendData: any = this.setData();
-    console.log(toSendData);
+    this.setData();
     this.saveFav();
   }
   async saveFav() {

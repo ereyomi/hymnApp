@@ -12,12 +12,12 @@ export class HymysApiService {
   getAllHymns() {
     return this.hymns;
   }
-  getHymn(id) {
+  getHymn(id: any) {
     return this.hymns.find(
       data => data.id === id
     );
   }
-  getHymnByFilter(id) {
+  getHymnByFilter(id: any) {
     return this.hymns.filter(
       data => data.id === id
     );

@@ -4,17 +4,20 @@
     width: 100%;
     position: fixed;
     top: 0;
-   
     z-index: 10;
+    height: 60px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 15px;
 }
 .header {
     display: flex;
-    padding: 20px 15px;
 }
 .headerTwo {
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
-    padding: 15px 15px;
 }
 .logo {
     display: flex;
@@ -78,6 +81,7 @@
 .favBtn {
     zoom: 2;
     --color: white;
+    color: var(--color);
  }
 .favIt {
     color: tomato;
