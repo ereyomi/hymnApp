@@ -1,17 +1,19 @@
 <ion-header [translucent]="true" class="ion-no-border">
   
     <div [class.header]="!isBack" [class.headerTwo]="isBack">
-      <div id="back" (click)="goBack()" *ngIf="isBack">
-        <!-- <button id="backbutton">&#9776;</button> -->
-        
-          <ion-icon id="backbutton" name="arrow-back"></ion-icon>
-        <!-- &#8249 -->
-      </div>
+      <div class="flex-it-row">
+         <div id="back" (click)="goBack()" *ngIf="isBack">
+          <!-- <button id="backbutton">&#9776;</button> -->
+          
+            <ion-icon id="backbutton" name="arrow-back"></ion-icon>
+          <!-- &#8249 -->
+        </div>
 
-      <!--first-->  <!-- [ngStyle]="{width: !isBack ? '100%' : ''} -->
-      <div class="logo">
-        <div class="logoImg"><img src="assets/logo/logo.png" /></div>
-        <h3>RCF Hymns</h3>
+        <!--first-->  <!-- [ngStyle]="{width: !isBack ? '100%' : ''} -->
+        <div class="logo">
+          <div class="logoImg"><img src="assets/logo/logo.png" /></div>
+          <h3>RCF Hymns</h3>
+        </div>
       </div>
 
       <div class="fav" *ngIf="isBack" (click)="addOrRemoveFav()">

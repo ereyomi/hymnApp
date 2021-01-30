@@ -106,5 +106,8 @@ export class CrudNotePage implements OnInit {
     }
 
   }
+  get wordLength() {
+    return this.note.split(' ').length;
+  }
 
 }

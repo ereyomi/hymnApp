@@ -48,7 +48,7 @@
     font-size: 0.4rem;
 }
 
-/* .trash{
+.trash{
     position: absolute;
     right: 15px;
     bottom: 10px;
@@ -57,10 +57,11 @@
     border-radius: 100%;
     border: none;
     background: none;
+    outline: none !important;
 }
 .trash button ion-icon {
     zoom: 1.1;
-} */
+}
 
 .ereNoteBody .noteBox:nth-of-type(1) .note {
     color: #463224 !important;

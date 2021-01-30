@@ -13,15 +13,24 @@
 <ion-content>
   <div class="addnote">
      <input type="text" placeholder="Title" [(ngModel)]="title">
-       <ion-textarea auto-grow="true" spellcheck="true" placeholder="Note" [(ngModel)]="note" (ionChange)="updateNote($event)"></ion-textarea>
+       <ion-textarea 
+          auto-grow="true" 
+          spellcheck="true" 
+          placeholder="Note" 
+          [(ngModel)]="note" 
+          enterkeyhint="enter"
+          inputmode="text"
+          (ionChange)="updateNote($event)">
+        </ion-textarea>
     <!--  <textarea placeholder="Note" 
      (keyup)="textareaAutoIncrease($event)" 
      #mytextarea
      [(ngModel)]="note"></textarea> --><!--  cols="30" rows="10" -->
   </div>
 </ion-content>
-<!-- <ion-footer class="ion-no-border">
+<ion-footer class="ion-no-border">
   <ion-toolbar color="dark">
-    <ion-title>saving..</ion-title>
+    <!-- <ion-title>saving..</ion-title> -->
+    <ion-title>words length: {{wordLength}}</ion-title>
   </ion-toolbar>
-</ion-footer> -->
+</ion-footer>

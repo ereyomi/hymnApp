@@ -25,14 +25,15 @@
               <p> {{ note.note | truncate }} <p>
               <span class="time">{{ note.editted_at | mydate}}</span>
           </div>
-          <!-- <div class="trash">
+          <div class="trash">
             <button>
-              <ion-icon name="trash" (click)="deleteNote(note.id)"></ion-icon>
+              <ion-icon name="trash" (click)="deleteNote(note)" color="light"></ion-icon>
             </button>
-          </div> -->
+          </div>
       </div>
   </div>
 
   </section>
   
 </ion-content>
+<!-- <ion-icon name="close-outline"></ion-icon> -->

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IndexedDbService } from '../services/indexed-db.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-note',
@@ -11,16 +11,18 @@ export class NotePage implements OnInit {
   table = 'note'; // ObjectStore is same as table in mysql
   noteTitle = 'title';
   note = 'note';
+  objectStoreName = 'hymnsnote';
 
   notes: any;
   datt: any;
   check = false;
-  constructor(private indexedDb: IndexedDbService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor(
+    private indexedDbS: IndexedDbService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   async ngOnInit() {
-    const datee =  new Date(`20 January 2020`);
+    const datee = new Date(`20 January 2020`);
     this.datt = datee;
 
     // note data is gotten from the resolver service
@@ -28,6 +30,7 @@ export class NotePage implements OnInit {
     this.route.data.subscribe(
       (data) => this.notes = data.notes
     );
+    console.log(this.notes);
   }
   swipeme(ev) {
     console.log('swipe is working');
@@ -37,9 +40,15 @@ export class NotePage implements OnInit {
     this.router.navigateByUrl('crudnote');
   }
   viewNote(id: any) {
-    this.router.navigateByUrl(`crudnote/${id}`);
+    this.router.navigateByUrl(`crudnote/${ id }`);
   }
-  deleteNote(id: any) {
-    console.log(id);
+  async deleteNote(d: any) {
+    const data = {
+      objectStoreName: this.objectStoreName,
+      ...d
+    };
+    console.log(data);
+    await this.indexedDbS.deleteData(data)
+      .then(d => this.notes = d);
   }
 }

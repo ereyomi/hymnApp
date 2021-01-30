@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { bluePrint } from './dbBluePrint';
 
 @Injectable( {
@@ -13,7 +14,12 @@ export class IndexedDbService {
     DB: any;
     appDBsetUp = bluePrint;
 
+    notes: BehaviorSubject<Array<any>> = new BehaviorSubject(null);
+
     constructor() { }
+    getNotes(): Observable<any> {
+        return this.notes.asObservable();
+    }
 
     createUUID() {
         let dt = new Date().getTime();
@@ -86,7 +92,7 @@ export class IndexedDbService {
 
         const { objectStoreName, fileindex, id, ...otherData } = data;
         // generate unique ID
-        await this.createUUID();
+        this.createUUID();
 
         const toSaveData = {
             // id: this.uniqueId,
@@ -168,7 +174,8 @@ export class IndexedDbService {
                         notes.push( getItAll.result.value );
                         getItAll.result.continue();
                     } else {
-                        resolve( notes );
+                        resolve(notes);
+                        this.notes.next(notes);
                         // console.log('thats all the data', notes);
                     }
                 };
@@ -207,8 +214,9 @@ export class IndexedDbService {
                 const getdb = await this.getStoreIndexedDb( openmydb, objectStoreName );
                 const getIt = await getdb.store.delete( otherData.id );
                 getIt.onsuccess = async () => {
-                    console.log( 'deleted: ', getIt.result );
-                    resolve( getIt.result );
+                    console.log('deleted');
+                    const getAll = await this.getAllDataInDescOrder({ objectStoreName });
+                    resolve(getAll );
                 };
                 getIt.onerror = ( e: any ) => reject( e );
             };
