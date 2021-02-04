@@ -9,16 +9,16 @@ const routes: Routes = [
   },
   {
     path: 'hymn/:id',
-    loadChildren: () => import('./display-hymn/display-hymn.module').then( m => m.DisplayHymnPageModule),
-    resolve: {data: DisplayHymnRouteResolver}
+    loadChildren: () => import('./display-hymn/display-hymn.module').then(m => m.DisplayHymnPageModule),
+    resolve: { data: DisplayHymnRouteResolver }
   },
   {
     path: 'crudnote',
-    loadChildren: () => import('./crud-note/crud-note.module').then( m => m.CrudNotePageModule)
+    loadChildren: () => import('./crud-note/crud-note.module').then(m => m.CrudNotePageModule)
   },
   {
     path: 'crudnote/:id',
-    loadChildren: () => import('./crud-note/crud-note.module').then( m => m.CrudNotePageModule)
+    loadChildren: () => import('./crud-note/crud-note.module').then(m => m.CrudNotePageModule)
   },
 ];
 

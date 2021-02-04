@@ -10,7 +10,7 @@ export class HomePage implements OnInit {
   myhymns: any;
   allAvailablehymns: any;
   homebackHref = '/tabs/home';
-  constructor(private hymnsApi: HymysApiService, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
   ngOnInit() {
     this.route.data.subscribe(
       (data) => this.allAvailablehymns = data.hymns

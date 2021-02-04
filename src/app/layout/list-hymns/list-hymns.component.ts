@@ -27,9 +27,7 @@ export class ListHymnsComponent implements OnInit {
     this.hymnsApi.backHref = this.backHref;
     console.log('hymn clicked: ', event.target.textContent);
     this.hymnsApi.toDisplayHymn = event.target.textContent;
-    if (this.hymnsApi.toDisplayHymn !== null
-      &&
-      (this.hymnsApi.toDisplayHymn === event.target.textContent)) {
+    if (this.hymnsApi.toDisplayHymn !== null) {
       this.router.navigateByUrl(`/hymn/${ id }`);
     }
   }
