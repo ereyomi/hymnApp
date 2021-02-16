@@ -1,0 +1,138 @@
+https://app.supabase.io/project/nqcfzgrghrcefzynlcxx/api/default?resource=biblestudy
+https://supabase.io/docs/client/select
+
+
+
+
+
+READ ALL ROWS
+let { data: biblestudy, error } = await supabase
+  .from('biblestudy')
+  .select('*')
+
+
+
+READ SPECIFIC COLUMNS
+let { data: biblestudy, error } = await supabase
+  .from('biblestudy')
+  .select('some_column,other_column')
+READ FOREIGN TABLES
+let { data: biblestudy, error } = await supabase
+  .from('biblestudy')
+  .select(`
+    some_column,
+    other_table (
+      foreign_key
+    )
+  `)
+
+
+
+WITH PAGINATION
+let { data: biblestudy, error } = await supabase
+  .from('biblestudy')
+  .select('*')
+  .range(0, 9)
+
+-----------------------------------------------------\WITH FILTERING
+let { data: biblestudy, error } = await supabase
+  .from('biblestudy')
+  .select("*")
+  
+  // Filters
+  .eq('column', 'Equal to')
+  .gt('column', 'Greater than')
+  .lt('column', 'Less than')
+  .gte('column', 'Greater than or equal to')
+  .lte('column', 'Less than or equal to')
+  .like('column', '%CaseSensitive%')  
+  .ilike('column', '%CaseInsensitive%')
+  .is('column', null)
+  .in('column', ['Array', 'Values'])
+  .neq('column', 'Not equal to')
+  // Arrays
+  .cs('array_column', ['array', 'contains'])
+  .cd('array_column', ['contained', 'by'])
+
+-------------------------------------------------------
+
+
+INSERT A ROW
+const { data, error } = await supabase
+  .from('biblestudy')
+  .insert([
+    { some_column: 'someValue', other_column: 'otherValue' },
+  ])
+INSERT MANY ROWS
+const { data, error } = await supabase
+  .from('biblestudy')
+  .insert([
+    { some_column: 'someValue' },
+    { some_column: 'otherValue' },
+  ])
+UPSERT MATCHING ROWS
+const { data, error } = await supabase
+  .from('biblestudy')
+  .insert([{ some_column: 'someValue' }], { upsert: true })
+
+----------------------------------<!-- markdownlint-capture -->
+UPDATE MATCHING ROWS
+const { data, error } = await supabase
+  .from('biblestudy')
+  .update({ other_column: 'otherValue' })
+  .eq('some_column', 'someValue')
+--------------------------------
+DELETE MATCHING ROWS
+const { data, error } = await supabase
+  .from('biblestudy')
+  .delete()
+  .eq('some_column', 'someValue')
+
+-------------------------------
+
+
+
+  SUBSCRIBE TO ALL EVENTS
+const biblestudy = supabase
+  .from('biblestudy')
+  .on('*', payload => {
+    console.log('Change received!', payload)
+  })
+  .subscribe()
+
+
+
+SUBSCRIBE TO INSERTS
+const biblestudy = supabase
+  .from('biblestudy')
+  .on('INSERT', payload => {
+    console.log('Change received!', payload)
+  })
+  .subscribe()
+
+
+SUBSCRIBE TO UPDATES
+const biblestudy = supabase
+  .from('biblestudy')
+  .on('UPDATE', payload => {
+    console.log('Change received!', payload)
+  })
+  .subscribe()
+
+
+SUBSCRIBE TO DELETES
+const biblestudy = supabase
+  .from('biblestudy')
+  .on('DELETE', payload => {
+    console.log('Change received!', payload)
+  })
+  .subscribe()
+
+
+SUBSCRIBE TO SPECIFIC ROWS
+const biblestudy = supabase
+  .from('biblestudy:column_name.eq.someValue')
+  .on('*', payload => {
+    console.log('Change received!', payload)
+  })
+  .subscribe()

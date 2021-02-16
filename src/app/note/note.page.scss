@@ -1,7 +1,8 @@
 
 .noteheader{
     --background: #2279be;
-    padding: 10px 0px 10px 0px;
+    --padding-top: 5px !important;
+    --padding-bottom: 5px !important;
 }
 .noteheader ion-title{
     --color: white;

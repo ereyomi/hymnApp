@@ -1,13 +1,14 @@
 
 .searchToolBar{
     --background: #2279be;
-    padding: 15px 0px 5px 0px;
+    padding: 50px 0 0 0;
     ion-searchbar {
         --border-radius: 20px;
         --background: white;
         --color: #black;
         --placeholder-color: black;
         --box-shadow: none;
+        
     }
 }
 .searchBox {
