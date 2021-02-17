@@ -1,8 +1,13 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "Hymns",
+  "appName": "hymns",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
   "cordova": {}
 }
