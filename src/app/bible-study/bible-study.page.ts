@@ -17,7 +17,7 @@ export class BibleStudyPage implements OnInit {
         Validators.maxLength(50),
       ],
     ],
-    textVerse: [
+    textVerses: [
       '',
       [
         Validators.required,
@@ -58,7 +58,7 @@ export class BibleStudyPage implements OnInit {
   supabase: any;
   SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMjk3NjQ0MywiZXhwIjoxOTI4NTUyNDQzfQ.npPzB4XrvyKcOljn0Ug_byywg_OUscfFMBL3jHUoMUg';
   SUPERBASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEyOTc2NDQzLCJleHAiOjE5Mjg1NTI0NDN9.km17M7KCTMcz41laQvp0tJIagnNDpFGgzqMufWlp19s';
-  SUPABASE_URL = "https://nqcfzgrghrcefzynlcxx.supabase.co";
+  SUPABASE_URL = 'https://nqcfzgrghrcefzynlcxx.supabase.co';
   bibleStudySegments = {
     available: 'available',
     saved: 'saved',
@@ -163,7 +163,14 @@ export class BibleStudyPage implements OnInit {
     // loading.dismiss(); // to dismiss
   }
   upload() {
-    this.presentLoading();
+    // this.presentLoading();
+    this.insertToDb();
   }
-
+  async insertToDb() {
+    const componentFormValue = this.componentForm.value;
+    const { data, error } = await this.supabase
+      .from('biblestudy')
+      .insert([componentFormValue]);
+    console.log(data, error);
+  }
 }
