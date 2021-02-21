@@ -2,7 +2,7 @@
 
   <ion-toolbar>
 
-    <ion-segment (ionChange)="segmentChanged($event)" [value]="bibleStudySegments.upload" color="secondary">
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="bibleStudySegments.available" color="secondary">
 
       <ion-segment-button [value]="bibleStudySegments.available">
         <ion-label>Available</ion-label>
@@ -12,7 +12,7 @@
         <ion-label>Saved</ion-label>
       </ion-segment-button>
 
-      <ion-segment-button [value]="bibleStudySegments.upload">
+      <ion-segment-button [value]="bibleStudySegments.upload" *ngIf="isAdmin">
         <ion-label>Upload</ion-label>
       </ion-segment-button>
 
@@ -35,7 +35,7 @@
     saved
   </div>
 
-  <div *ngIf="segments === bibleStudySegments.upload" class="pad-x-20">
+  <div *ngIf="segments === bibleStudySegments.upload && isAdmin" class="pad-x-20">
 
     <form [formGroup]="componentForm">
 

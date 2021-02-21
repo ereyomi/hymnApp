@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppEnvironmentService } from '../core/services/app-environment.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor() { }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { createClient } from '@supabase/supabase-js';
+import { AppEnvironmentService } from '../core/services/app-environment.service';
 
 @Component({
   selector: 'app-bible-study',
@@ -75,8 +76,12 @@ export class BibleStudyPage implements OnInit {
     }
   ];
 
-  segments: string = 'upload';
-  constructor(private fb: FormBuilder, public loadingController: LoadingController) { }
+  segments: string = this.bibleStudySegments.available;
+  constructor(
+    private fb: FormBuilder,
+    public loadingController: LoadingController,
+    private appEnvS: AppEnvironmentService
+  ) { }
 
   async ngOnInit() {
 
@@ -104,7 +109,7 @@ export class BibleStudyPage implements OnInit {
     )
   `);
     console.log('biblestudy:', b, c); */
-
+    this.segments = this.bibleStudySegments.available;
   }
   async signup() {
     const { user, session, error } = await this.supabase.auth.signUp({
@@ -165,6 +170,9 @@ export class BibleStudyPage implements OnInit {
   upload() {
     // this.presentLoading();
     this.insertToDb();
+  }
+  get isAdmin() {
+    return this.appEnvS.isAdmin;
   }
   async insertToDb() {
     const componentFormValue = this.componentForm.value;
