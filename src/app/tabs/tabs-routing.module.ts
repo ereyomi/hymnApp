@@ -37,6 +37,10 @@ const routes: Routes = [
         path: 'bibleStudy',
         loadChildren: () => import('src/app/bible-study/bible-study.module').then(m => m.BibleStudyPageModule)
       },
+      {
+        path: 'account',
+        loadChildren: () => import('src/app/account/account.module').then(m => m.AccountPageModule)
+      },
     ]
   }
 ];

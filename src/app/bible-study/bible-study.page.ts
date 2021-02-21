@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 import { createClient } from '@supabase/supabase-js';
 
 @Component({
@@ -7,6 +9,51 @@ import { createClient } from '@supabase/supabase-js';
   styleUrls: ['./bible-study.page.scss'],
 })
 export class BibleStudyPage implements OnInit {
+  componentForm = this.fb.group({
+    topic: [
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(50),
+      ],
+    ],
+    textVerse: [
+      '',
+      [
+        Validators.required,
+      ],
+    ],
+    memoryVerse: [
+      '',
+      [
+        Validators.required,
+      ],
+    ],
+    introduction: [
+      '',
+      [
+        Validators.required,
+      ],
+    ],
+    outline: [
+      '',
+      [
+        Validators.required,
+      ],
+    ],
+    conclusion: [
+      '',
+      [
+        Validators.required,
+      ],
+    ],
+    upcomingEvent: [
+      '',
+      [
+        Validators.required,
+      ],
+    ],
+  });
 
   supabase: any;
   SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMjk3NjQ0MywiZXhwIjoxOTI4NTUyNDQzfQ.npPzB4XrvyKcOljn0Ug_byywg_OUscfFMBL3jHUoMUg';
@@ -14,7 +61,8 @@ export class BibleStudyPage implements OnInit {
   SUPABASE_URL = "https://nqcfzgrghrcefzynlcxx.supabase.co";
   bibleStudySegments = {
     available: 'available',
-    saved: 'saved'
+    saved: 'saved',
+    upload: 'upload'
   };
   bibleStudys = [
     {
@@ -27,8 +75,8 @@ export class BibleStudyPage implements OnInit {
     }
   ];
 
-  segments: string = 'available';
-  constructor() { }
+  segments: string = 'upload';
+  constructor(private fb: FormBuilder, public loadingController: LoadingController) { }
 
   async ngOnInit() {
 
@@ -50,7 +98,7 @@ export class BibleStudyPage implements OnInit {
     /* let { data: b, c } = await this.supabase
       .from('content')
       .select(`
-    title,
+      title,
     biblestudy (
       biblestudyId
     )
@@ -97,6 +145,25 @@ export class BibleStudyPage implements OnInit {
   }
   openBibleStudy(event: Event, id: any) {
     console.log(id);
+  }
+  changedEditor(eve: any) {
+    console.log('event', eve);
+  }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000,
+      backdropDismiss: false
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+    // loading.dismiss(); // to dismiss
+  }
+  upload() {
+    this.presentLoading();
   }
 
 }
