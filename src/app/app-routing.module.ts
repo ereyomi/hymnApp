@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'crudnote/:id',
     loadChildren: () => import('./crud-note/crud-note.module').then(m => m.CrudNotePageModule)
   },
+  {
+    path: 'read-bible-study/:id',
+    loadChildren: () => import('./read-bible-study/read-bible-study.module').then( m => m.ReadBibleStudyPageModule)
+  },
+
 ];
 
 @NgModule({

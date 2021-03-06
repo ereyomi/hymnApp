@@ -18,6 +18,7 @@ import { QuillModule } from 'ngx-quill';
     ReactiveFormsModule,
     QuillModule.forRoot()
   ],
-  declarations: [BibleStudyPage]
+  declarations: [BibleStudyPage],
+  exports: [BibleStudyPage],
 })
-export class BibleStudyPageModule {}
+export class BibleStudyPageModule { }

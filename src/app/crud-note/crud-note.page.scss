@@ -2,7 +2,8 @@ $width: 100%;
 $font: "montserrat";
 .addNoteheader{
     --background: #2279be;
-    padding: 10px 0px 10px 0px;
+    --padding-top: 5px !important;
+    --padding-bottom: 5px !important;
     ion-button, 
     ion-title {
         --color: white;

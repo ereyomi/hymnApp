@@ -34,7 +34,7 @@ const routes: Routes = [
         resolve: { data: FavoritePageResolver }
       },
       {
-        path: 'bibleStudy',
+        path: 'biblestudy',
         loadChildren: () => import('src/app/bible-study/bible-study.module').then(m => m.BibleStudyPageModule)
       },
     ]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { createClient } from '@supabase/supabase-js';
 import { AppEnvironmentService } from '../core/services/app-environment.service';
@@ -80,7 +81,8 @@ export class BibleStudyPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     public loadingController: LoadingController,
-    private appEnvS: AppEnvironmentService
+    private appEnvS: AppEnvironmentService,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -145,11 +147,11 @@ export class BibleStudyPage implements OnInit {
     });
   }
   segmentChanged(ev: any): void {
-    console.log('event: ', ev.detail.value);
     this.segments = ev.detail.value;
   }
   openBibleStudy(event: Event, id: any) {
     console.log(id);
+    this.router.navigateByUrl(`read-bible-study/${ id }`);
   }
   changedEditor(eve: any) {
     console.log('event', eve);

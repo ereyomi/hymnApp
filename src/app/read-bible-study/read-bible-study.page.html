@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="addNoteheader">
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back" id="backbutton"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  
+    <ion-title>Bible Study</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="read-div">
+
+    <div class="logo">
+      <div class="logoHolder">
+        <img src="assets/logo/biblestudy.png" alt="logo">
+      </div>
+    </div>
+
+    <div>
+
+      <ion-text>
+        <p><b>TOPIC:</b> {{data.topic}}</p>
+        <p><b>TEXT:</b> {{data.text}}</p>
+        <p><b>MEMORY VERSE:</b> {{data.memoryVerse}}</p>
+      </ion-text>
+
+      <div>
+        <h3>INTRODUCTION</h3>
+        <div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  
+</ion-content>
