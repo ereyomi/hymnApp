@@ -50,7 +50,7 @@ export class BiblestudyService {
     // Create a single supabase client for interacting with your database 
     const { data, error } = await this.supabase
       .from('biblestudy')
-      .select('id', 'topic');
-    return { data, error }/* '*' */
+      .select('*');
+    return { data, error };/* '*' , 'id, topic'*/
   }
 }

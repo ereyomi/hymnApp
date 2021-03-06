@@ -39,7 +39,7 @@
 
     <div class="list">
       <ol>
-        <li *ngFor="let study of bibleStudys" (click)="openBibleStudy($event, study.id)">{{ study.title }}</li>
+        <li *ngFor="let study of bibleStudy" (click)="openBibleStudy(study.id)">{{ study.topic }}</li>
       </ol>
     </div>
 

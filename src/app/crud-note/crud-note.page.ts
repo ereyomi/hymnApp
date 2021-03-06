@@ -26,7 +26,8 @@ export class CrudNotePage implements OnInit {
 
   constructor(private indexedDb: IndexedDbService,
     private navCtrl: NavController,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute
+  ) { }
 
   setData({ id = 0, title = '',
     note = '', created_at = this.currentDate,

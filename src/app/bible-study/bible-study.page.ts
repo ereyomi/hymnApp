@@ -61,16 +61,7 @@ export class BibleStudyPage implements OnInit {
     saved: 'saved',
     upload: 'upload'
   };
-  bibleStudys = [
-    {
-      id: 1,
-      title: 'Heart of Man',
-    },
-    {
-      id: 2,
-      title: 'Curriculum of life'
-    }
-  ];
+  bibleStudy: any;
 
   segments: string = this.bibleStudySegments.available;
   constructor(
@@ -83,31 +74,35 @@ export class BibleStudyPage implements OnInit {
 
   async ngOnInit() {
     this.segments = this.bibleStudySegments.available;
-    const biblestudies = await this.bibleS.getBibleStudies();
-    console.log(biblestudies);
+    await this.loadBibleStudy();
   }
   segmentChanged(ev: any): void {
     this.segments = ev.detail.value;
   }
-  openBibleStudy(event: Event, id: any) {
-    console.log(id);
+  openBibleStudy(id: any) {
     this.router.navigateByUrl(`read-bible-study/${ id }`);
   }
   changedEditor(eve: any) {
     console.log('event', eve);
   }
-  async presentLoading() {
+  async loadBibleStudy() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',
-      duration: 2000,
       backdropDismiss: false
     });
     await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
-    // loading.dismiss(); // to dismiss
+    try {
+      const { data, error } = await this.bibleS.getBibleStudies();
+      this.bibleStudy = data;
+      console.log(this.bibleStudy);
+      loading.dismiss();
+    } catch (error) {
+      loading.dismiss();
+    }
+    /* const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!'); */
   }
   upload() {
     // this.presentLoading();
@@ -119,12 +114,14 @@ export class BibleStudyPage implements OnInit {
   async insertToDb() {
     this.bibleS.insertToDb(this.componentForm.value);
   }
-  doRefresh(event: any) {
+  async doRefresh(event: any) {
     console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
+    try {
+      const { data } = await this.bibleS.getBibleStudies();
+      this.bibleStudy = data;
       event.target.complete();
-    }, 2000);
+    } catch (error) {
+      event.target.complete();
+    }
   }
 }
