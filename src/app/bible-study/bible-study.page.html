@@ -1,5 +1,4 @@
-<ion-content [fullscreen]="true">
-
+<ion-header>
   <ion-toolbar>
 
     <ion-segment (ionChange)="segmentChanged($event)" [value]="bibleStudySegments.available" color="secondary">
@@ -19,6 +18,21 @@
     </ion-segment>
 
   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- refresh-circle-outline -->
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="chevron-down-circle-outline"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+
+  
 
   
   <div *ngIf="segments === bibleStudySegments.available">
@@ -124,19 +138,5 @@
     
 
   </div>
-
-
-  <button (click)="signup()">
-    signup
-  </button>
-  <button (click)="signin()">
-    signin
-  </button>
-  <button (click)="signout()">
-    signout
-  </button>
-  <button (click)="resetpassword()">
-    reset password
-  </button>
 
 </ion-content>

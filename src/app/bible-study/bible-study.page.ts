@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { createClient } from '@supabase/supabase-js';
 import { AppEnvironmentService } from '../core/services/app-environment.service';
+import { BiblestudyService } from '../services/biblestudy.service';
 
 @Component({
   selector: 'app-bible-study',
@@ -56,11 +56,6 @@ export class BibleStudyPage implements OnInit {
       ],
     ],
   });
-
-  supabase: any;
-  SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMjk3NjQ0MywiZXhwIjoxOTI4NTUyNDQzfQ.npPzB4XrvyKcOljn0Ug_byywg_OUscfFMBL3jHUoMUg';
-  SUPERBASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEyOTc2NDQzLCJleHAiOjE5Mjg1NTI0NDN9.km17M7KCTMcz41laQvp0tJIagnNDpFGgzqMufWlp19s';
-  SUPABASE_URL = 'https://nqcfzgrghrcefzynlcxx.supabase.co';
   bibleStudySegments = {
     available: 'available',
     saved: 'saved',
@@ -82,69 +77,14 @@ export class BibleStudyPage implements OnInit {
     private fb: FormBuilder,
     public loadingController: LoadingController,
     private appEnvS: AppEnvironmentService,
-    private router: Router
+    private router: Router,
+    private bibleS: BiblestudyService
   ) { }
 
   async ngOnInit() {
-
-    this.supabase = createClient(this.SUPABASE_URL, this.SUPABASE_KEY);
-    // process.env.SUPABASE_KEY;
-    // Create a single supabase client for interacting with your database 
-    let { data: biblestudy, error } = await this.supabase
-      .from('biblestudy')
-      .select('*');
-    console.log(biblestudy, error);
-
-    /* const user = await this.supabase.auth.user();
-    console.log(user);
-    const session = this.supabase.auth.session();
-    console.log(session);
-    this.sessionSuper(); */
-
-
-    /* let { data: b, c } = await this.supabase
-      .from('content')
-      .select(`
-      title,
-    biblestudy (
-      biblestudyId
-    )
-  `);
-    console.log('biblestudy:', b, c); */
     this.segments = this.bibleStudySegments.available;
-  }
-  async signup() {
-    const { user, session, error } = await this.supabase.auth.signUp({
-      email: 'ereyomioluwaseyi@gmail.com',
-      password: 'ere96yomi',
-    });
-    console.log(user, session, error);
-  }
-  async signin() {
-    let { user, error } = await this.supabase.auth.signIn({
-      email: 'ereyomioluwaseyi@gmail.com',
-      password: 'ere96yomi',
-    });
-    console.log(user, error);
-    this.sessionSuper();
-  }
-  async signout() {
-    const { error } = this.supabase.auth.signOut();
-    console.log(error);
-    this.sessionSuper();
-  }
-  async resetpassword() {
-    const { data, error } = this.supabase.auth.api.resetPasswordForEmail('ereyomioluwaseyi@gmail.com');
-    /* const access_token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjEyOTg5MzY5LCJzdWIiOiJlNzgyMzkzZS0wOTY5LTQ3NjItOGMyOC1iNTNjM2JlNjhhYzciLCJlbWFpbCI6ImVyZXlvbWlvbHV3YXNleWlAZ21haWwuY29tIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwifSwidXNlcl9tZXRhZGF0YSI6e30sInJvbGUiOiJhdXRoZW50aWNhdGVkIn0.2wdcGFNAPSNuvQAD7RnDFO - 4pQGmDRFYoJWSdIQLcHo';
-    const { error, data } = await this.supabase.auth.api
-      .updateUser(access_token, { password: 'ereyomi' });*/
-    console.log(data, error);
-
-  }
-  sessionSuper() {
-    this.supabase.auth.onAuthStateChange((event, session) => {
-      console.log('session: ', event, session);
-    });
+    const biblestudies = await this.bibleS.getBibleStudies();
+    console.log(biblestudies);
   }
   segmentChanged(ev: any): void {
     this.segments = ev.detail.value;
@@ -177,10 +117,14 @@ export class BibleStudyPage implements OnInit {
     return this.appEnvS.isAdmin;
   }
   async insertToDb() {
-    const componentFormValue = this.componentForm.value;
-    const { data, error } = await this.supabase
-      .from('biblestudy')
-      .insert([componentFormValue]);
-    console.log(data, error);
+    this.bibleS.insertToDb(this.componentForm.value);
+  }
+  doRefresh(event: any) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 }
