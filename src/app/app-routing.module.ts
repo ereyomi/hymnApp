@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DisplayHymnRouteResolver } from './services/displayhymn-route-resolver';
+import { ReadHymnsRouteResolver } from './services/read-biblestudy-route-resolver';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'read-bible-study/:id',
-    loadChildren: () => import('./read-bible-study/read-bible-study.module').then( m => m.ReadBibleStudyPageModule)
+    loadChildren: () => import('./read-bible-study/read-bible-study.module').then(m => m.ReadBibleStudyPageModule),
+    resolve: { data: ReadHymnsRouteResolver }
   },
 
 ];

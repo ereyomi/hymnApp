@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AppEnvironmentService } from '../core/services/app-environment.service';
 import { BiblestudyService } from '../services/biblestudy.service';
+import { IndexedDbService } from '../services/indexed-db.service';
 
 @Component({
   selector: 'app-bible-study',
@@ -69,12 +70,28 @@ export class BibleStudyPage implements OnInit {
     public loadingController: LoadingController,
     private appEnvS: AppEnvironmentService,
     private router: Router,
-    private bibleS: BiblestudyService
+    private bibleS: BiblestudyService,
+    public alertController: AlertController,
+    private indexedDb: IndexedDbService
   ) { }
 
   async ngOnInit() {
     this.segments = this.bibleStudySegments.available;
-    await this.loadBibleStudy();
+    try {
+      const dataForSupaBase = {
+        objectStoreName: 'bibleStudyOnline',
+      };
+      const getData: any[] = await this.indexedDb.getAll(dataForSupaBase);
+      if (getData.length === 0) {
+        await this.loadBibleStudy();
+      } else {
+        this.bibleStudy = getData[0].data;
+      }
+
+    } catch (error) {
+
+    }
+
   }
   segmentChanged(ev: any): void {
     this.segments = ev.detail.value;
@@ -95,8 +112,19 @@ export class BibleStudyPage implements OnInit {
 
     try {
       const { data, error } = await this.bibleS.getBibleStudies();
+      if (data) {
+        const dataForSupaBase = {
+          objectStoreName: 'bibleStudyOnline',
+          id: 1,
+          data,
+        };
+        await this.indexedDb.addDataWithId(dataForSupaBase);
+      } else if (error) {
+        this.presentAlertConfirm();
+      } else {
+        console.log('app error');
+      }
       this.bibleStudy = data;
-      console.log(this.bibleStudy);
       loading.dismiss();
     } catch (error) {
       loading.dismiss();
@@ -123,5 +151,29 @@ export class BibleStudyPage implements OnInit {
     } catch (error) {
       event.target.complete();
     }
+  }
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      message: 'Unable to get Bible Study at this time. Please Pull to get data',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        },
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

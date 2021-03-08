@@ -24,7 +24,8 @@ export class CrudNotePage implements OnInit {
     || document.documentElement.clientHeight;
 
 
-  constructor(private indexedDb: IndexedDbService,
+  constructor(
+    private indexedDb: IndexedDbService,
     private navCtrl: NavController,
     private route: ActivatedRoute
   ) { }
@@ -50,13 +51,10 @@ export class CrudNotePage implements OnInit {
     this.route.params.subscribe(
       async (params: Params) => {
         if (!isNaN(+params.id)) {
-          console.log(+params.id);
           const data = { id: +params.id };
           this.toSendData = this.setData(data);
-          console.log('this is what I set: ', this.toSendData);
 
           this.edit = await this.indexedDb.getData(this.toSendData);
-          console.log(this.edit);
 
           this.title = this.edit.title;
           this.note = this.edit.note;
@@ -82,7 +80,6 @@ export class CrudNotePage implements OnInit {
     this.note = event.target.value;
   }
   async gobackAndSave() {
-    console.log(this.title, this.note);
     await this.saveData();
     this.goBack();
   }
@@ -94,14 +91,10 @@ export class CrudNotePage implements OnInit {
       return false;
     } else {
       const data: {} = { title: this.title, note: this.note };
-      console.log(data);
       this.toSendData = this.setData(data);
-      console.log('am sending this: ', this.toSendData);
       if (this.setNoteId === 0) {
-        console.log('inserting...');
         await this.indexedDb.insert(this.toSendData);
       } else {
-        console.log('updatin...');
         await this.indexedDb.updateData(this.toSendData);
       }
     }

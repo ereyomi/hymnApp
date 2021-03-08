@@ -22,16 +22,24 @@
     <div>
 
       <ion-text>
-        <p><b>TOPIC:</b> {{data.topic}}</p>
-        <p><b>TEXT:</b> {{data.text}}</p>
-        <p><b>MEMORY VERSE:</b> {{data.memoryVerse}}</p>
+        <p><b>TOPIC:</b> {{bibleStudy.topic}}</p>
+        <p><b>TEXT:</b> {{bibleStudy.textVerses}}</p>
+        <p><b>MEMORY VERSE:</b> {{bibleStudy.memoryVerse}}</p>
       </ion-text>
 
       <div>
         <h3>INTRODUCTION</h3>
-        <div>
+        <div [innerHTML]="byPassHTML(bibleStudy.introduction)"></div>
+      </div>
 
-        </div>
+      <div>
+        <h3>OUTLINE</h3>
+        <div [innerHTML]="byPassHTML(bibleStudy.outline)"></div>
+      </div>
+
+      <div>
+        <h3>UPCOMING EVENT</h3>
+        <div [innerHTML]="byPassHTML(bibleStudy.upcomingEvent)"></div>
       </div>
 
     </div>
