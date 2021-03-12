@@ -1,5 +1,7 @@
 <ion-header class="ion-no-border" [translucent]="true">
+
   <ion-toolbar class="addNoteheader">
+
     <ion-buttons slot="start">
       <ion-button (click)="goback()">
         <ion-icon slot="icon-only" name="arrow-back" id="backbutton"></ion-icon>
@@ -7,7 +9,18 @@
     </ion-buttons>
   
     <ion-title>Bible Study</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="goback()">
+        <ion-icon slot="icon-only" 
+          name="heart">
+          </ion-icon>
+      </ion-button>
+        
+    </ion-buttons>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
@@ -35,6 +48,11 @@
       <div>
         <h3>OUTLINE</h3>
         <div [innerHTML]="byPassHTML(bibleStudy.outline)"></div>
+      </div>
+
+      <div>
+        <h3>CONCLUSION</h3>
+        <div [innerHTML]="byPassHTML(bibleStudy.conclusion)"></div>
       </div>
 
       <div>

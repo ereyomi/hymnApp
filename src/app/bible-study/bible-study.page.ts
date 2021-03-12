@@ -72,7 +72,7 @@ export class BibleStudyPage implements OnInit {
     private router: Router,
     private bibleS: BiblestudyService,
     public alertController: AlertController,
-    private indexedDb: IndexedDbService
+    private indexedDb: IndexedDbService,
   ) { }
 
   async ngOnInit() {
@@ -86,12 +86,12 @@ export class BibleStudyPage implements OnInit {
         await this.loadBibleStudy();
       } else {
         this.bibleStudy = getData[0].data;
+        const msg = 'Pull to refresh';
       }
 
     } catch (error) {
 
     }
-
   }
   segmentChanged(ev: any): void {
     this.segments = ev.detail.value;
@@ -99,9 +99,7 @@ export class BibleStudyPage implements OnInit {
   openBibleStudy(id: any) {
     this.router.navigateByUrl(`read-bible-study/${ id }`);
   }
-  changedEditor(eve: any) {
-    console.log('event', eve);
-  }
+  changedEditor(eve: any) {}
   async loadBibleStudy() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
@@ -143,10 +141,17 @@ export class BibleStudyPage implements OnInit {
     this.bibleS.insertToDb(this.componentForm.value);
   }
   async doRefresh(event: any) {
-    console.log('Begin async operation');
     try {
       const { data } = await this.bibleS.getBibleStudies();
       this.bibleStudy = data;
+      if (data) {
+        const dataForSupaBase = {
+          objectStoreName: 'bibleStudyOnline',
+          id: 1,
+          data,
+        };
+        await this.indexedDb.addDataWithId(dataForSupaBase);
+      }
       event.target.complete();
     } catch (error) {
       event.target.complete();
