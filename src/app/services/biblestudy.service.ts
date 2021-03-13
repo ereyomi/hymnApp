@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
+import { IndexedDbService } from './indexed-db.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,9 @@ export class BiblestudyService {
   SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMjk3NjQ0MywiZXhwIjoxOTI4NTUyNDQzfQ.npPzB4XrvyKcOljn0Ug_byywg_OUscfFMBL3jHUoMUg';
   SUPERBASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEyOTc2NDQzLCJleHAiOjE5Mjg1NTI0NDN9.km17M7KCTMcz41laQvp0tJIagnNDpFGgzqMufWlp19s';
   SUPABASE_URL = 'https://nqcfzgrghrcefzynlcxx.supabase.co';
+  setBibleStudyId: any;
 
-  constructor() { }
+  constructor(private indexedDb: IndexedDbService,) { }
   async signup() {
     const { user, session, error } = await this.supabase.auth.signUp({
       email: 'ereyomioluwaseyi@gmail.com',
@@ -38,12 +40,6 @@ export class BiblestudyService {
     console.log(session);
     this.sessionSuper();
   }
-  async insertToDb(d: any) {
-    const { data, error } = await this.supabase
-      .from('biblestudy')
-      .insert([d]);
-    console.log(data, error);
-  }
   async getBibleStudies() {
     this.supabase = createClient(this.SUPABASE_URL, this.SUPABASE_KEY);
     // process.env.SUPABASE_KEY;
@@ -52,5 +48,36 @@ export class BiblestudyService {
       .from('biblestudy')
       .select('*');
     return { data, error };/* '*' , 'id, topic'*/
+  }
+  setSuperBaseData(data: any) {
+    const dataForSupaBase = {
+      objectStoreName: 'bibleStudyOnline',
+      id: 1,
+      data,
+    };
+  }
+  setToSaveBibleStudyData({ id = 0, data = {}, isSaved = false, created_at = new Date(),
+    editted_at = new Date() }) {
+    if (id !== 0) {
+      this.setBibleStudyId = id;
+    }
+    const d = {
+      objectStoreName: 'savedBibleStudy',
+      id: this.setBibleStudyId,
+      data,
+      isSaved,
+      created_at,
+      editted_at,
+    };
+    return d;
+  }
+  saveFavBibleStudy(data: any) {
+    const d = {
+      id: data.id,
+      data,
+    };
+    const saveFavBibleStudy = this.setToSaveBibleStudyData(d);
+    console.log(saveFavBibleStudy);
+    this.indexedDb.addDataWithId(saveFavBibleStudy);
   }
 }

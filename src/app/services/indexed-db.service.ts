@@ -8,7 +8,7 @@ import { bluePrint } from './dbBluePrint';
 
 export class IndexedDbService {
     version = 1;
-    nameOfDataBase = 'rcffupre';
+    nameOfDataBase = 'rcfFupreHymnApp';
     indexedDB: any;
     uniqueId: any;
     DB: any;
@@ -52,10 +52,7 @@ export class IndexedDbService {
             this.appDBsetUp.forEach((data) => {
                 const store = db.createObjectStore(
                     data.objectStore,
-                    {
-                        keyPath: 'id',
-                        autoIncrement: true
-                    }
+                    data.objectStoreOption
                 );
                 [...data.fileindex].forEach((findex: any) => {
                     store.createIndex(`${ findex.fileindex }`, `${ findex.fileindex }`, { unique: findex.unique });

@@ -37,7 +37,7 @@ export class CrudNotePage implements OnInit {
       this.setNoteId = id;
     }
     const data = {
-      objectStoreName: 'hymnsnote',
+      objectStoreName: 'note',
       id: this.setNoteId,
       title,
       note,

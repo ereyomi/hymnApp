@@ -7,16 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { BibleStudyPageRoutingModule } from './bible-study-routing.module';
 
 import { BibleStudyPage } from './bible-study.page';
-import { QuillModule } from 'ngx-quill';
+import { HeaderModule } from '../layout/header/header.module';
+import { IntroModule } from '../layout/intro/intro.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
     BibleStudyPageRoutingModule,
-    ReactiveFormsModule,
-    QuillModule.forRoot()
+    IntroModule
   ],
   declarations: [BibleStudyPage],
   exports: [BibleStudyPage],

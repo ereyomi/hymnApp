@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   admin: true,
+  appVersion: require('./../../package.json').version,
 };
 
 /*

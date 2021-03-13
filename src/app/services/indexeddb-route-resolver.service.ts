@@ -14,7 +14,7 @@ export class IndexedDbResolver implements Resolve<any> {
   }
   async getAllSavedNotes() {
     const data = {
-      objectStoreName: 'hymnsnote',
+      objectStoreName: 'note',
     };
     this.notes = await this.indexedDb.getAllDataInDescOrder(data);
     return this.notes;

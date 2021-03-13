@@ -11,7 +11,7 @@ export class NotePage implements OnInit {
   table = 'note'; // ObjectStore is same as table in mysql
   noteTitle = 'title';
   note = 'note';
-  objectStoreName = 'hymnsnote';
+  objectStoreName = 'note';
 
   notes: any;
   datt: any;

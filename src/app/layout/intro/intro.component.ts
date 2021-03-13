@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-intro',
@@ -6,9 +6,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent implements OnInit {
+  @Input() type!: string;
+  images = [
+    {
+      id: 1,
+      name: 'on-string',
+      type: 'default',
+      extension: 'jpg'
+    },
+    {
+      id: 2,
+      name: 'study',
+      type: 'bibleStudy',
+      extension: 'png'
+    },
+    {
+      id: 3,
+      name: 'favorite',
+      type: 'favorite',
+      extension: 'jpg'
+    }
+  ];
 
   constructor() { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    console.log(this.displayImgType);
+  }
+  getImgBYType() {
+    const findByType = this.images.find(img => img.type === this.type);
+    return this.pullAllTogetherWithExtention(findByType) || this.pullAllTogetherWithExtention(this.images[0]);
+  }
+  pullAllTogetherWithExtention(data: any) {
+    return `${ data.name }.${ data.extension }`;
+  }
+  get displayImgType() {
+    if (typeof this.type === 'undefined' || this.type === null || this.type === '') {
+      return this.pullAllTogetherWithExtention(this.images[0]);
+    } else {
+      return this.getImgBYType();
+    }
+  }
+  get displayImg() {
+    return `assets/images/${ this.displayImgType }`;
+  }
 }

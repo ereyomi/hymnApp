@@ -1,27 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-
-    <ion-segment (ionChange)="segmentChanged($event)" [value]="bibleStudySegments.available" color="secondary">
-
-      <ion-segment-button [value]="bibleStudySegments.available">
-        <ion-label>Available</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button [value]="bibleStudySegments.saved">
-        <ion-label>Saved</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button [value]="bibleStudySegments.upload" *ngIf="isAdmin">
-        <ion-label>Upload</ion-label>
-      </ion-segment-button>
-
-    </ion-segment>
-
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+    <app-intro type="bibleStudy"></app-intro>
 </ion-header>
 
 <ion-content>
-  <!-- refresh-circle-outline -->
 
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
@@ -35,107 +16,13 @@
   
 
   
-  <div *ngIf="segments === bibleStudySegments.available">
+  <div>
 
     <div class="list">
       <ol>
         <li *ngFor="let study of bibleStudy" (click)="openBibleStudy(study.id)">{{ study.topic }}</li>
       </ol>
     </div>
-
-  </div>
-
-  <div *ngIf="segments === bibleStudySegments.saved">
-    saved
-  </div>
-
-  <div *ngIf="segments === bibleStudySegments.upload && isAdmin" class="pad-x-20">
-
-    <form [formGroup]="componentForm">
-
-      <ion-grid>
-
-        <ion-row>
-
-          <ion-col size="12">
-            <ion-item>
-              <ion-label position="stacked">Topic</ion-label>
-              <ion-input formControlName="topic"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="12">
-            <ion-item>
-              <ion-label position="stacked">Text Verse</ion-label>
-              <ion-input formControlName="textVerses"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="12">
-            <ion-item>
-              <ion-label position="stacked">Memory Verse</ion-label>
-              <ion-textarea auto-grow="true" cols="20" formControlName="memoryVerse"></ion-textarea>
-            </ion-item>
-          </ion-col>
-        
-
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <div class="my-20">
-              <label>Introduction</label>
-              <div class="mt-10">
-                <quill-editor [styles]="{height: '200px'}" formControlName="introduction"></quill-editor>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <div class="my-20">
-              <label>Outline</label>
-              <div class="mt-10">
-                <quill-editor [styles]="{height: '200px'}" formControlName="outline"></quill-editor>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <div class="my-20">
-              <label>Conclusion</label>
-              <div class="mt-10">
-                <quill-editor [styles]="{height: '200px'}" formControlName="conclusion"></quill-editor>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" class="my-20">
-            <ion-item>
-              <ion-label position="stacked">Upcoming Event</ion-label>
-              <ion-textarea auto-grow="true" formControlName="upcomingEvent"></ion-textarea>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-
-      </ion-grid>
-
-      <ion-row>
-        <ion-col>
-          <div>
-            <ion-button size="large" shape="round" expand="full" (click)="upload()">upload</ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-
-    </form>
-
-    
 
   </div>
 
