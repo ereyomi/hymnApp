@@ -1,0 +1,34 @@
+
+.typedText {
+  font-size: 1rem;
+}
+.typedText {
+  font-weight: normal;
+}
+.cursor {
+  display: inline-block;
+  color: #ccc;
+  font-size: 2rem;
+  margin-left: 0.1rem;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    color: #ccc;
+  }
+  49% {
+    color: #ccc;
+  }
+  50% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: #ccc;
+  }
+}
+.cursor .typing {
+  animation: none;
+}

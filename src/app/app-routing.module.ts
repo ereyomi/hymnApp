@@ -25,7 +25,11 @@ const routes: Routes = [
     path: 'read-bible-study/:id',
     loadChildren: () => import('./read-bible-study/read-bible-study.module').then(m => m.ReadBibleStudyPageModule),
     resolve: { data: ReadHymnsRouteResolver }
+  },  {
+    path: 'aibun',
+    loadChildren: () => import('./aibun/aibun.module').then( m => m.AibunPageModule)
   },
+
 
 ];
 

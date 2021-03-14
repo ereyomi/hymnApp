@@ -7,9 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { NotePageRoutingModule } from './note-routing.module';
 
 import { NotePage } from './note.page';
-import { MydatePipe } from '../pipe/mydate.pipe';
-import { TruncatePipe } from '../pipe/truncate.pipe';
 import { HymnspipeModule } from '../pipe/hymnspipe.module';
+import { AibunPageModule } from '../aibun/aibun.module';
 
 @NgModule({
   imports: [
@@ -17,8 +16,9 @@ import { HymnspipeModule } from '../pipe/hymnspipe.module';
     FormsModule,
     IonicModule,
     NotePageRoutingModule,
-    HymnspipeModule
+    HymnspipeModule,
+    AibunPageModule
   ],
   declarations: [NotePage],
 })
-export class NotePageModule {}
+export class NotePageModule { }
