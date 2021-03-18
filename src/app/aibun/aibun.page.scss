@@ -1,6 +1,9 @@
-
+.ai {
+  font-family: "montserrat";
+  text-align: center;
+}
 .typedText {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 .typedText {
   font-weight: normal;
@@ -8,7 +11,7 @@
 .cursor {
   display: inline-block;
   color: #ccc;
-  font-size: 2rem;
+  font-size: 1rem;
   margin-left: 0.1rem;
   animation: blink 1s infinite;
 }

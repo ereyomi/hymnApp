@@ -16,11 +16,12 @@ export class AibunPage implements OnInit, AfterContentInit {
   @ViewChild('cursorSpan', { static: true }) cursorSpan: ElementRef;
   textArray = [
     'Hi I am Aibun',
-    'Looks like this page is Empty',
+    'this page is Empty',
+    `click on the "add" icon to add a note`,
   ];
-  typingDelay = 200;
-  erasingDelay = 100;
-  newTextDelay = 2000;
+  typingDelay = 100;
+  erasingDelay = 80;
+  newTextDelay = 1000;
   textArrayIndex = 0;
   charIndex = 0;
   constructor() { }
@@ -54,7 +55,7 @@ export class AibunPage implements OnInit, AfterContentInit {
         this.charIndex - 1
       );
       this.charIndex--;
-      setTimeout(this.erase, this.typingDelay);
+      setTimeout(this.erase, this.erasingDelay);
     } else {
       this.cursorSpan.nativeElement.classList.remove('typing');
       this.textArrayIndex++;

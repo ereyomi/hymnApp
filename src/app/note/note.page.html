@@ -14,8 +14,9 @@
 </ion-header>
 
 <ion-content>
+
   <ng-container>
-    <div>
+    <div class="center-it">
       <app-aibun></app-aibun>
     </div>
   </ng-container>
@@ -25,19 +26,19 @@
 
     <div class="noteBox" *ngFor="let note of notes">
       <div class="bar"></div>
-      <div class="innerNoteBox myeffect">
-          <div class="note" (click)="viewNote(note.id)">
-              <h1>{{ note.title }}</h1>
-              <p> {{ note.note | truncate }} <p>
-              <span class="time">{{ note.editted_at | mydate}}</span>
-          </div>
-          <div class="trash">
-            <button>
-              <ion-icon name="trash" (click)="deleteNote(note)" color="light"></ion-icon>
-            </button>
-          </div>
-      </div>
-  </div>
+        <div class="innerNoteBox myeffect">
+            <div class="note" (click)="viewNote(note.id)">
+                <h1>{{ note.title }}</h1>
+                <p> {{ note.note | truncate }} <p>
+                <span class="time">{{ note.editted_at | mydate}}</span>
+            </div>
+            <div class="trash">
+              <button>
+                <ion-icon name="trash" (click)="deleteNote(note)" color="light"></ion-icon>
+              </button>
+            </div>
+        </div>
+    </div>
 
   </section>
   
