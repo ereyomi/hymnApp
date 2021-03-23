@@ -17,7 +17,6 @@ import { AibunPageModule } from '../aibun/aibun.module';
     IonicModule,
     SearchPageRoutingModule,
     ListHymnsModule,
-    AibunPageModule
   ],
   declarations: [SearchPage]
 })

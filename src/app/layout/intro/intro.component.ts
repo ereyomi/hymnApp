@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class IntroComponent implements OnInit {
   @Input() type!: string;
+  @Input() displayText!: string;
   images = [
     {
       id: 1,
@@ -49,5 +50,16 @@ export class IntroComponent implements OnInit {
   }
   get displayImg() {
     return `assets/images/${ this.displayImgType }`;
+  }
+  get textToDisplay() {
+    if (typeof this.displayText === 'undefined' || this.displayText === null || this.displayText === '') {
+      return `The Redeemed Christian Fellowship
+      <br />
+      (AN ARM OF CHRIST THE REDEEMER'S MINISTRY)
+      <br />
+      FUPRE CHAPTER`;
+    } else {
+      return this.displayText;
+    }
   }
 }

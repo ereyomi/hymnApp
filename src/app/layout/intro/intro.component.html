@@ -2,13 +2,7 @@
   <div class="ere-displayBox">
     <img [src]="displayImg" [alt]="displayImgType" />
     <div class="image-overlay"></div>
-    <p class="text">
-      The Redeemed Christian Fellowship
-      <br />
-      (AN ARM OF CHRIST THE REDEEMER'S MINISTRY)
-      <br />
-      FUPRE CHAPTER
-    </p>
+    <p class="text" [innerHTML]="textToDisplay"></p>
   </div>
 </div>
 <div class="line"></div>
