@@ -5,23 +5,24 @@
         <ion-icon slot="icon-only" name="arrow-back" id="backbutton"></ion-icon>
       </ion-button>
     </ion-buttons>
-  
+
     <ion-title>Add note</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="addnote">
-     <input type="text" placeholder="Title" [(ngModel)]="title">
-       <ion-textarea 
-          auto-grow="true" 
-          spellcheck="true" 
-          placeholder="Note" 
-          [(ngModel)]="note" 
-          enterkeyhint="enter"
-          inputmode="text"
-          (ionChange)="updateNote($event)">
-        </ion-textarea>
+    <input type="text" placeholder="Title" [(ngModel)]="title" />
+    <ion-textarea
+      auto-grow="true"
+      spellcheck="true"
+      placeholder="Note"
+      [(ngModel)]="note"
+      enterkeyhint="enter"
+      inputmode="text"
+      (ionChange)="updateNote($event)"
+    >
+    </ion-textarea>
     <!--  <textarea placeholder="Note" 
      (keyup)="textareaAutoIncrease($event)" 
      #mytextarea
@@ -29,8 +30,8 @@
   </div>
 </ion-content>
 <ion-footer class="ion-no-border">
-  <ion-toolbar color="dark">
+  <ion-toolbar class="bottom">
     <!-- <ion-title>saving..</ion-title> -->
-    <ion-title>words length: {{wordLength}}</ion-title>
+    <ion-title>words length: {{wordLength}} (Autosave)</ion-title>
   </ion-toolbar>
 </ion-footer>

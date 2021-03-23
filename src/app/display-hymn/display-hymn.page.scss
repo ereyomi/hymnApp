@@ -6,18 +6,11 @@
   }
   
   #displayHymnBox div {
-    white-space: pre;
+    white-space: pre-line;
     font-size: 0.9rem;
     color: black;
     font-family: "montserrat";
     /*letter-spacing: 2px;*/
     line-height: 20px;
-    padding-right: 40px;
-  }
-  
-  #displayHymnBox pre {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-style: italic !important;
-    margin: -15px 0px !important;
+    padding: 0 20px;
   }

@@ -1,41 +1,48 @@
 $width: 100%;
 $font: "montserrat";
-.addNoteheader{
-    --background: #2279be;
-    --padding-top: 5px !important;
-    --padding-bottom: 5px !important;
-    ion-button, 
-    ion-title {
-        --color: white;
-    }
+.addNoteheader {
+  --background: #2279be;
+  --padding-top: 5px !important;
+  --padding-bottom: 5px !important;
+  ion-button,
+  ion-title {
+    --color: white;
+  }
 }
 .addnote {
-    width: $width;
+  width: $width;
 
-    input, 
-    textarea,
-    ion-textarea {
-        width: 100%;
-        border: none;
-        background: none;
-        padding: 20px 30px;
-        color: black;
-        outline: none;
-        font-family: $font;
-        :focus {
-            outline: none;
-        }
+  input,
+  textarea,
+  ion-textarea {
+    width: 100%;
+    border: none;
+    background: none;
+    padding: 20px 30px;
+    color: black;
+    outline: none;
+    font-family: $font;
+    :focus {
+      outline: none;
     }
-    input {
-        font-size: 2rem;
-    }
-    textarea,
-    ion-textarea {
-        font-size: 1.3rem;
-        /* resize: none; */
-    }
-    
+  }
+  input {
+    font-size: 1.4rem;
+    background: red;
+  }
+  textarea,
+  ion-textarea {
+    font-size: 1.3rem;
+    /* resize: none; */
+  }
 }
 #backbutton {
-    font-size: 35px;
+  font-size: 35px;
+}
+.bottom {
+  --background: #2279be;
+  --color: white;
+  ion-title {
+    font-size: 1rem;
+  }
 }

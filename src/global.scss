@@ -47,7 +47,6 @@ body {
     font-family: "montserrat";
     padding: 0;
     margin: 0;
-    /*counter-reset: my-awesome-counter;*/
   }
   
   .list ol li {
@@ -55,7 +54,6 @@ body {
     border-bottom: 1px solid rgb(203, 230, 203);
     cursor: pointer;
     color: black;
-    /*counter-increment: my-awesome-counter;*/
   }
   .pad-x-20 {
     padding: 0 20px;
@@ -79,3 +77,10 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  pre {
+    white-space: pre-line !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-style: italic !important;
+    margin-top: 25px !important;
+  } 

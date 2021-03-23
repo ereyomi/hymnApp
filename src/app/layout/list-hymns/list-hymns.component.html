@@ -1,5 +1,5 @@
 <div class="list">
   <ol *ngIf="hymns">
-    <li *ngFor="let hymn of hymns" (click)="openDetails($event, hymn.id)">{{ hymn.name }}</li>
+    <li *ngFor="let hymn of hymns; let i = index" (click)="openDetails($event, hymn.id)">{{i+1}}. {{ hymn.name }}</li>
   </ol>
 </div>

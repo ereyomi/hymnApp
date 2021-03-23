@@ -30,7 +30,6 @@ export class NotePage implements OnInit {
     this.route.data.subscribe(
       (data) => this.notes = data.notes
     );
-    console.log(this.notes);
   }
   swipeme(ev) {
     console.log('swipe is working');
@@ -47,7 +46,6 @@ export class NotePage implements OnInit {
       objectStoreName: this.objectStoreName,
       ...d
     };
-    console.log(data);
     await this.indexedDbS.deleteData(data)
       .then(d => this.notes = d);
   }
