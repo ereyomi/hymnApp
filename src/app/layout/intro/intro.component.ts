@@ -31,9 +31,7 @@ export class IntroComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.displayImgType);
-  }
+  ngOnInit() {}
   getImgBYType() {
     const findByType = this.images.find(img => img.type === this.type);
     return this.pullAllTogetherWithExtention(findByType) || this.pullAllTogetherWithExtention(this.images[0]);

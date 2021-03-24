@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "hymns",
+  "appName": "hymnapp",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
