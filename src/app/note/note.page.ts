@@ -51,4 +51,7 @@ export class NotePage implements OnInit {
     await this.indexedDbS.deleteData(data)
       .then(d => this.notes = d);
   }
+  get noteIsEmpty() {
+    return this.notes.length <= 0 ? true : false;
+  }
 }

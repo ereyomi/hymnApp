@@ -34,5 +34,8 @@ export class FavoritePage implements OnInit {
       this.router.navigateByUrl(`/hymn/${id}`);
     }
   }
+  get favHymnsIsEmpty() {
+    return this.favHymns.length <= 0 ? true : false;
+  }
 
 }

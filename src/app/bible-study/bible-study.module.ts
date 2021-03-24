@@ -9,13 +9,15 @@ import { BibleStudyPageRoutingModule } from './bible-study-routing.module';
 import { BibleStudyPage } from './bible-study.page';
 import { HeaderModule } from '../layout/header/header.module';
 import { IntroModule } from '../layout/intro/intro.module';
+import { AibunPageModule } from '../aibun/aibun.module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     BibleStudyPageRoutingModule,
-    IntroModule
+    IntroModule,
+    AibunPageModule
   ],
   declarations: [BibleStudyPage],
   exports: [BibleStudyPage],

@@ -11,7 +11,7 @@ import { IndexedDbService } from '../services/indexed-db.service';
   styleUrls: ['./bible-study.page.scss'],
 })
 export class BibleStudyPage implements OnInit {
-  bibleStudy: any;
+  bibleStudy: any[] = [];
   displayText = 'Bible Study';
   constructor(
     public loadingController: LoadingController,
@@ -32,7 +32,6 @@ export class BibleStudyPage implements OnInit {
         await this.loadBibleStudy();
       } else {
         this.bibleStudy = getData[0].data;
-        const msg = 'Pull to refresh';
       }
 
     } catch (error) {
@@ -116,5 +115,8 @@ export class BibleStudyPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+  get bibleStudyIsEmpty() {
+    return this.bibleStudy.length <= 0 ? true : false;
   }
 }

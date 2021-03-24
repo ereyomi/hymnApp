@@ -18,13 +18,13 @@
 </ion-header>
 
 <ion-content>
-  <ng-container>
+  <ng-container *ngIf="noteIsEmpty">
     <div class="center-it">
       <app-aibun [type]="'note'"></app-aibun>
     </div>
   </ng-container>
 
-  <section class="ereNoteBody">
+  <section class="ereNoteBody" *ngIf="!noteIsEmpty">
     <div class="noteBox" *ngFor="let note of notes">
       <div class="bar"></div>
       <div class="innerNoteBox myeffect">

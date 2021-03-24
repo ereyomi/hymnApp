@@ -24,6 +24,10 @@ export class AibunPage implements OnInit, AfterContentInit {
     'Hi',
     'You are yet to add a Hymn'
   ];
+  bibleStudyTextArray = [
+    'Pull to refresh',
+    'I didnt find any Bible Study data'
+  ];
   @Input() type!: string;
   typingDelay = 100;
   erasingDelay = 80;
@@ -77,6 +81,8 @@ export class AibunPage implements OnInit, AfterContentInit {
       return this.favTextArray;
     } else if (this.type === 'note') {
       return this.noteTextArray;
+    } else if (this.type === 'biblestudy') {
+      return this.bibleStudyTextArray;
     } else {
       return [
         'empty'

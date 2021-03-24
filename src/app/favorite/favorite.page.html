@@ -1,21 +1,22 @@
-
 <ion-header [translucent]="true" class="ion-no-border">
-    <app-intro type="favorite" [displayText]="displayText"></app-intro>
+  <app-intro type="favorite" [displayText]="displayText"></app-intro>
 </ion-header>
 
 <ion-content>
-
-  <ng-container>
+  <ng-container *ngIf="favHymnsIsEmpty">
     <div class="center-it">
       <app-aibun [type]="'favorite'"></app-aibun>
     </div>
   </ng-container>
-  
-  <div class="list">
+
+  <div class="list" *ngIf="!favHymnsIsEmpty">
     <ol *ngIf="favHymns">
-      <li *ngFor="let hymn of favHymns" (click)="openDetails($event, hymn.hymnId)">{{ hymn.hymn }}</li>
+      <li
+        *ngFor="let hymn of favHymns"
+        (click)="openDetails($event, hymn.hymnId)"
+      >
+        {{ hymn.hymn }}
+      </li>
     </ol>
   </div>
-
 </ion-content>
-
