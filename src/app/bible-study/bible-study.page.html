@@ -1,29 +1,31 @@
 <ion-header [translucent]="true" class="ion-no-border">
-    <app-intro type="bibleStudy" [displayText]="displayText"></app-intro>
+  <app-intro type="bibleStudy" [displayText]="displayText"></app-intro>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content
-          pullingIcon="chevron-down-circle-outline"
-          pullingText="Pull to refresh"
-          refreshingSpinner="circles"
-          refreshingText="Refreshing...">
-        </ion-refresher-content>
-      </ion-refresher>
-
-  
-
-  
   <div>
+    <ng-container *ngIf="bibleStudyIsEmpty">
+      <div class="center-it">
+        <app-aibun [type]="'biblestudy'"></app-aibun>
+      </div>
+    </ng-container>
 
-    <div class="list">
+    <div class="list" *ngIf="!bibleStudyIsEmpty">
       <ol>
-        <li *ngFor="let study of bibleStudy" (click)="openBibleStudy(study.id)">{{ study.topic }}</li>
+        <li *ngFor="let study of bibleStudy" (click)="openBibleStudy(study.id)">
+          {{ study.topic }}
+        </li>
       </ol>
     </div>
-
   </div>
-
 </ion-content>
