@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -15,30 +16,28 @@ import {
 export class AibunPage implements OnInit, AfterContentInit {
   @ViewChild('typedTextSpan', { static: true }) typedTextSpan: ElementRef;
   @ViewChild('cursorSpan', { static: true }) cursorSpan: ElementRef;
-  textData = [
-    'Hi I am Aibun',
+  noteTextArray = [
     'looks like you are yet to add a note',
     `click on the "add" icon to add a note`,
   ];
-  textDataB = [
-    'search made easy',
-    'type in something let me find it'
+  favTextArray = [
+    'Hi',
+    'You are yet to add a Hymn'
   ];
-  @Input() set type(data: string) {
-    typeof data === 'undefined' ? '' : '';
-  };
+  @Input() type!: string;
   typingDelay = 100;
   erasingDelay = 80;
   newTextDelay = 1000;
   textDataIndex = 0;
   charIndex = 0;
+  setTimeOut: any;
   constructor() { }
 
   ngOnInit() {
   }
   ngAfterContentInit() {
     if (this.textData.length > 0) {
-      setTimeout(this.typing, this.newTextDelay + 250);
+      this.setTimeOut = setTimeout(this.typing, this.newTextDelay + 250);
     }
   }
   typing = () => {
@@ -48,10 +47,10 @@ export class AibunPage implements OnInit, AfterContentInit {
 
       this.typedTextSpan.nativeElement.textContent += this.textData[this.textDataIndex].charAt(this.charIndex);
       this.charIndex++;
-      setTimeout(this.typing, this.typingDelay);
+      this.setTimeOut = setTimeout(this.typing, this.typingDelay);
     } else {
       this.cursorSpan.nativeElement.classList.remove('typing');
-      setTimeout(this.erase, this.newTextDelay);
+      this.setTimeOut = setTimeout(this.erase, this.newTextDelay);
     }
   };
   erase = () => {
@@ -63,13 +62,26 @@ export class AibunPage implements OnInit, AfterContentInit {
         this.charIndex - 1
       );
       this.charIndex--;
-      setTimeout(this.erase, this.erasingDelay);
+      this.setTimeOut = setTimeout(this.erase, this.erasingDelay);
     } else {
       this.cursorSpan.nativeElement.classList.remove('typing');
       this.textDataIndex++;
-      if (this.textDataIndex >= this.textData.length) this.textDataIndex = 0;
-      setTimeout(this.typing, this.typingDelay + 1100);
+      if (this.textDataIndex >= this.textData.length) {
+        this.textDataIndex = 0;
+      };
+      this.setTimeOut = setTimeout(this.typing, this.typingDelay + 1100);
     }
   };
+  get textData(): Array<any> {
+    if (this.type === 'favorite') {
+      return this.favTextArray;
+    } else if (this.type === 'note') {
+      return this.noteTextArray;
+    } else {
+      return [
+        'empty'
+      ];
+    }
+  }
 
 }

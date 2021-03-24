@@ -28,7 +28,9 @@ export class NotePage implements OnInit {
     // note data is gotten from the resolver service
     // this is to solve the issue of routing from the addnote that does not update the note page
     this.route.data.subscribe(
-      (data) => this.notes = data.notes
+      (data) => {
+        this.notes = data.notes;
+      }
     );
   }
   swipeme(ev) {

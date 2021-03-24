@@ -12,6 +12,7 @@ import { IndexedDbService } from '../services/indexed-db.service';
 })
 export class BibleStudyPage implements OnInit {
   bibleStudy: any;
+  displayText = 'Bible Study';
   constructor(
     public loadingController: LoadingController,
     private appEnvS: AppEnvironmentService,
