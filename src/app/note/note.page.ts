@@ -28,9 +28,10 @@ export class NotePage implements OnInit {
     // note data is gotten from the resolver service
     // this is to solve the issue of routing from the addnote that does not update the note page
     this.route.data.subscribe(
-      (data) => this.notes = data.notes
+      (data) => {
+        this.notes = data.notes;
+      }
     );
-    console.log(this.notes);
   }
   swipeme(ev) {
     console.log('swipe is working');
@@ -47,7 +48,6 @@ export class NotePage implements OnInit {
       objectStoreName: this.objectStoreName,
       ...d
     };
-    console.log(data);
     await this.indexedDbS.deleteData(data)
       .then(d => this.notes = d);
   }

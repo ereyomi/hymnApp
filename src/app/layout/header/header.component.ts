@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   favId: any;
 
   @Input() hymnData: any;
+  introDisplayText: string;
 
   @Input() set back(data: boolean) {
     (data) ? (this.isBack = data) : (this.isBack = false);
@@ -29,10 +30,12 @@ export class HeaderComponent implements OnInit {
   constructor(private indexedDb: IndexedDbService, private router: Router, private navCtrl: NavController) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.introDisplayText = this.hymnData?.name || '';
+  }
 
   goBack() {
-    this.navCtrl.navigateBack(`${this.toPage}`);
+    this.navCtrl.navigateBack(`${ this.toPage }`);
   }
   addOrRemoveFav() {
     this.setData();
@@ -63,15 +66,15 @@ export class HeaderComponent implements OnInit {
     }
     this.favStatus = !this.favStatus;
   }
-  setData({id = 0} = {}) {
-    if (id !== 0)  {
+  setData({ id = 0 } = {}) {
+    if (id !== 0) {
       this.hymnData.id = id;
     }
     const data = {
       objectStoreName: 'favorite',
       id: this.hymnData.id,
       hymnId: this.hymnData.hymnId,
-      hymn: `${this.hymnData.name}`,
+      hymn: `${ this.hymnData.name }`,
     };
     return data;
   }

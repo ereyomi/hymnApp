@@ -8,6 +8,7 @@ import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
 import { ListHymnsModule } from '../layout/list-hymns/list-hymns.module';
+import { AibunPageModule } from '../aibun/aibun.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ListHymnsModule } from '../layout/list-hymns/list-hymns.module';
     FormsModule,
     IonicModule,
     SearchPageRoutingModule,
-    ListHymnsModule
+    ListHymnsModule,
   ],
   declarations: [SearchPage]
 })

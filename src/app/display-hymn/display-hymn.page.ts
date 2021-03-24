@@ -8,14 +8,12 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./display-hymn.page.scss'],
 })
 export class DisplayHymnPage implements OnInit {
-  // backHref = '/tabs/home';
   backHref: any;
   theHymn: any;
   hymnId: any;
   isFav: any;
   hymndata: any;
   itsAfav = false;
-  // @Input() backHref: any;
   constructor(private hymnsApi: HymysApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {

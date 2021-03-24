@@ -1,0 +1,38 @@
+.ai {
+  font-family: "montserrat";
+  text-align: center;
+}
+.typedText {
+  font-size: 0.8rem;
+}
+.typedText {
+  font-weight: normal;
+  color: rgb(128, 128, 128);
+}
+.cursor {
+  display: inline-block;
+  color: #ccc;
+  font-size: 1rem;
+  margin-left: 0.1rem;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    color: #ccc;
+  }
+  49% {
+    color: #ccc;
+  }
+  50% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: #ccc;
+  }
+}
+.cursor .typing {
+  animation: none;
+}

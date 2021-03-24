@@ -10,15 +10,17 @@ import { HymysApiService } from '../services/hymys-api.service';
 export class FavoritePage implements OnInit {
   favHymns: any;
   favbackHref = '/tabs/favorite';
-  constructor(private route: ActivatedRoute,
-              private hymnsApi: HymysApiService,
-              private router: Router) { }
+  displayText = 'My Favorite Hymns';
+  constructor(
+    private route: ActivatedRoute,
+    private hymnsApi: HymysApiService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(
       (data) => {
         this.favHymns = data.data;
-        console.log(this.favHymns);
       }
     );
   }

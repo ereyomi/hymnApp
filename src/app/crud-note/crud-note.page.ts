@@ -60,7 +60,7 @@ export class CrudNotePage implements OnInit {
           this.note = this.edit.note;
 
         } else {
-          console.log('+params.id is empty');
+          console.log('+params.id is empty: a new note');
         }
       }
     );

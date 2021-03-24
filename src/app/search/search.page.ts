@@ -29,8 +29,9 @@ export class SearchPage implements OnInit {
     );
   }
   searchIt(event: any) {
+    console.log(event);
     this.searchText = event.target.value.toLowerCase();
-    this.hymns = this.allAvailablehymns.filter(v => {
+    this.hymns = this.allAvailablehymns.filter((v: { content: string; }) => {
       return v.content.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }

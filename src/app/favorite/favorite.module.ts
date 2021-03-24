@@ -9,6 +9,7 @@ import { FavoritePage } from './favorite.page';
 import { IntroModule } from '../layout/intro/intro.module';
 import { HeaderModule } from '../layout/header/header.module';
 import { ListHymnsModule } from '../layout/list-hymns/list-hymns.module';
+import { AibunPageModule } from '../aibun/aibun.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ListHymnsModule } from '../layout/list-hymns/list-hymns.module';
     IntroModule,
     HeaderModule,
     ListHymnsModule,
+    AibunPageModule
   ],
   exports: [FavoritePage],
   declarations: [FavoritePage]
