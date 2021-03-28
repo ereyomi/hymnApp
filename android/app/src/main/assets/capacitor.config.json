@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "hymnapp",
+  "appId": "com.thinkeloquently.rcfhymnapp",
+  "appName": "Rcf Fupre Hymns",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

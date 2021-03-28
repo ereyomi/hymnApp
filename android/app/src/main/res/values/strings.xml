@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">hymnapp</string>
-    <string name="title_activity_main">hymnapp</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Rcf Fupre Hymns</string>
+    <string name="title_activity_main">Rcf Fupre Hymns</string>
+    <string name="package_name">com.thinkeloquently.rcfhymnapp</string>
+    <string name="custom_url_scheme">com.thinkeloquently.rcfhymnapp</string>
 </resources>
