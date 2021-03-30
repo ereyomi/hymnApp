@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
+import { AppEnvironmentService } from '../core/services/app-environment.service';
 import { IndexedDbService } from './indexed-db.service';
 
 @Injectable({
@@ -7,12 +8,12 @@ import { IndexedDbService } from './indexed-db.service';
 })
 export class BiblestudyService {
   supabase: any;
-  SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxMjk3NjQ0MywiZXhwIjoxOTI4NTUyNDQzfQ.npPzB4XrvyKcOljn0Ug_byywg_OUscfFMBL3jHUoMUg';
-  SUPERBASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjEyOTc2NDQzLCJleHAiOjE5Mjg1NTI0NDN9.km17M7KCTMcz41laQvp0tJIagnNDpFGgzqMufWlp19s';
-  SUPABASE_URL = 'https://nqcfzgrghrcefzynlcxx.supabase.co';
+  SUPABASE_KEY = this.appEnvS.supaBaseKey;
+  SUPERBASE_SERVICE_KEY = this.appEnvS.supaBaseServiceKey;
+  SUPABASE_URL = this.appEnvS.subaBaseUrl;
   setBibleStudyId: any;
 
-  constructor(private indexedDb: IndexedDbService,) { }
+  constructor(private indexedDb: IndexedDbService, private appEnvS: AppEnvironmentService) { }
   async signup() {
     const { user, session, error } = await this.supabase.auth.signUp({
       email: 'ereyomioluwaseyi@gmail.com',

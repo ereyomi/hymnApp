@@ -10,4 +10,13 @@ export class AppEnvironmentService {
   get isAdmin(): boolean {
     return environment.admin;
   }
+  get supaBaseKey(): string {
+    return environment.supaBaseKey;
+  }
+  get supaBaseServiceKey(): string {
+    return environment.supaBaseServiceKey;
+  }
+  get subaBaseUrl(): string {
+    return environment.supaBaseUrl;
+  }
 }
