@@ -351,7 +351,7 @@ export const hymnsData = [
     },
     {
         id: 12,
-        name:  'BEFORE THE LORD WE BOW',
+        name: 'BEFORE THE LORD WE BOW',
         content: `
         1.	Before the Lord we bow,
         The God Who reigns above,
@@ -449,7 +449,6 @@ export const hymnsData = [
         When i see the blood
         I will pass , will pass over you
         </pre>
-
        2. Chiefest of sinner Jesus will save;
        all He has promised so He will do
        washed in the fountain opened for sin
@@ -510,7 +509,6 @@ export const hymnsData = [
         All other ground is sinking sand;
         All other ground is sinking sand.
         </pre>
-
         2. When darkness seems to hide His face,
         I rest on His unchanging grace
         In every high and stormy gale,
@@ -579,7 +577,6 @@ export const hymnsData = [
         Count your blessings, name them one by one,
         And it will surprise you what the Lord hath done.
         </pre>
-
         2. Are you ever burdened with a load of care?
         Does the cross seem heavy you are called to bear?
         Count your many blessings, every doubt will fly,
@@ -613,7 +610,6 @@ export const hymnsData = [
         And wiser...er blessed Lord
         In thy precious Holy word
         </pre>
-
         2. Deeper deeper! Blessed Holy spirit
         Take me deeper still
         Till my life is wholly lost in Jesus
@@ -629,6 +625,85 @@ export const hymnsData = [
         Finds me conqu’ror, and in
         His own image Perfected at last. Amen
         `,
-    }
+    },
+    {
+        id: 21,
+        name: 'GREAT IS THY FAITHFULNESS',
+        content: `
+        1.	Great is thy faithfulness
+        Oh God my father
+        There is no shadow of turning with thee
+        Thou changest not
+        Thy compassion they fail not
+        As thou hast been
+        Thou forever will be.
+        <pre>
+        Great is Thy faithfulness
+        Great is Thy faithfulness
+        Morning by morning new mercies I see
+        All I have needed Thy hand hath
+        provided,
+        Great is Thy faithfulness,
+        Lord unto me
+        </pre>
+        2.	Summer and Winter
+        Springtime and harvest
+        Sun, moon and stars in their courses above
+        Join in all nature in manifold witness
+        To thy great faithfulness
+        Mercy and love
+
+        3.	Pardon for sin and a peace that endureth
+        Thine own dear presence to cheer and to
+        guide;
+        Your strength for today and bright hope for
+        tomorrow,
+        Blessings all mine with ten thousand aside!
+
+        Amen.
+
+        `
+    },
+    {
+        id: 22,
+        name: 'HAVE YOU BEEN TO JESUS',
+        content: `
+        1. Have you been to Jesus for a cleansing
+        power?
+        Are you watched in the blood of the lamb?
+        Are you fully trusting in His Grace this hour
+        Are you washed in the blood of the lamb?
+        <pre>
+        Are you washed... in the blood...
+        In the soul cleansing blood of the lamb?
+        Are your garments spotless ?
+        Are they white as snow?
+        Are you washed in the blood of the lamb
+        </pre>
+        2.	Are you walking daily by the Saviors side
+        Are you washed in the blood of the lamb
+        Do you rest each moment in the crucified?
+        Are you washed in the blood of the lamb?
+
+        3.	When the bride groom cometh will your robe be white?
+        Pure and white in the blood of the lamb?
+        Will your soul be ready for the mansion
+        bright
+        And be washed in the blood of the lamb
+
+        4.	Lay aside the garments that are Stained with
+        sin
+        And be washed in the blood of the lamb
+        There’s fountain flowing for the soul unclean
+        Oh be washed in the blood of the Iamb
+        `
+    },
+    {
+        id: 23,
+        name: '',
+        content: `
+
+        `
+    },
 
 ];
