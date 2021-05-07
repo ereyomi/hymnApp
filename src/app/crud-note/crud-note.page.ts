@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { IndexedDbService } from '../services/indexed-db.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { unsubscriberHelper } from '../core/helpers/subscription-helper';
 
 @Component({
   selector: 'app-crud-note',
   templateUrl: './crud-note.page.html',
   styleUrls: ['./crud-note.page.scss'],
 })
-export class CrudNotePage implements OnInit {
+export class CrudNotePage implements OnInit, OnDestroy {
   @ViewChild('mytextarea', { static: false }) mytextarea: ElementRef;
 
   title = '';
@@ -23,7 +25,7 @@ export class CrudNotePage implements OnInit {
     window.innerHeight || document.body.clientHeight
     || document.documentElement.clientHeight;
 
-
+  route$: Subscription;
   constructor(
     private indexedDb: IndexedDbService,
     private navCtrl: NavController,
@@ -48,7 +50,7 @@ export class CrudNotePage implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(
+    this.route$ = this.route.params.subscribe(
       async (params: Params) => {
         if (!isNaN(+params.id)) {
           const data = { id: +params.id };
@@ -102,6 +104,9 @@ export class CrudNotePage implements OnInit {
   }
   get wordLength() {
     return this.note.split(' ').length;
+  }
+  ngOnDestroy() {
+    unsubscriberHelper(this.route$);
   }
 
 }
