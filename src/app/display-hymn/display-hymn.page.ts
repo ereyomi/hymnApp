@@ -1,26 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HymysApiService } from '../services/hymys-api.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { unsubscriberHelper } from '../core/helpers/subscription-helper';
 
 @Component({
   selector: 'app-display-hymn',
   templateUrl: './display-hymn.page.html',
   styleUrls: ['./display-hymn.page.scss'],
 })
-export class DisplayHymnPage implements OnInit {
+export class DisplayHymnPage implements OnInit, OnDestroy {
   backHref: any;
   theHymn: any;
   hymnId: any;
   isFav: any;
   hymndata: any;
   itsAfav = false;
+  route$: Subscription;
   constructor(private hymnsApi: HymysApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.backHref = this.hymnsApi.backHref;
 
-    this.route.data.subscribe(
+    this.route$ = this.route.data.subscribe(
       (data) => {
         const rawData = data.data;
         const hymnFullData = rawData[0];
@@ -64,6 +67,9 @@ export class DisplayHymnPage implements OnInit {
       id: hymnFullData.id,
       isFav: itsAfav
     };
+  }
+  ngOnDestroy() {
+    unsubscriberHelper(this.route$);
   }
 
 }
