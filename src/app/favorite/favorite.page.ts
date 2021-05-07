@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { unsubscriberHelper } from '../core/helpers/subscription-helper';
 import { HymysApiService } from '../services/hymys-api.service';
 
 @Component({
@@ -7,10 +9,11 @@ import { HymysApiService } from '../services/hymys-api.service';
   templateUrl: './favorite.page.html',
   styleUrls: ['./favorite.page.scss'],
 })
-export class FavoritePage implements OnInit {
+export class FavoritePage implements OnInit, OnDestroy {
   favHymns: any;
   favbackHref = '/tabs/favorite';
   displayText = 'My Favorite Hymns';
+  route$: Subscription;
   constructor(
     private route: ActivatedRoute,
     private hymnsApi: HymysApiService,
@@ -18,7 +21,7 @@ export class FavoritePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe(
+    this.route$ = this.route.data.subscribe(
       (data) => {
         this.favHymns = data.data;
       }
@@ -36,6 +39,9 @@ export class FavoritePage implements OnInit {
   }
   get favHymnsIsEmpty() {
     return this.favHymns.length <= 0 ? true : false;
+  }
+  ngOnDestroy() {
+    unsubscriberHelper(this.route$);
   }
 
 }
