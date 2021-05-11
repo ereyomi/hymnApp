@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IndexedDbService } from '../services/indexed-db.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { unsubscriberHelper } from '../core/helpers/subscription-helper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note',
@@ -16,6 +18,7 @@ export class NotePage implements OnInit {
   notes: any;
   datt: any;
   check = false;
+  route$: Subscription;
   constructor(
     private indexedDbS: IndexedDbService,
     private router: Router,
@@ -27,7 +30,7 @@ export class NotePage implements OnInit {
 
     // note data is gotten from the resolver service
     // this is to solve the issue of routing from the addnote that does not update the note page
-    this.route.data.subscribe(
+    this.route$ = this.route.data.subscribe(
       (data) => {
         this.notes = data.notes;
       }
@@ -54,4 +57,8 @@ export class NotePage implements OnInit {
   get noteIsEmpty() {
     return this.notes.length <= 0 ? true : false;
   }
+  ngOnDestroy() {
+    unsubscriberHelper(this.route$);
+  }
+
 }
