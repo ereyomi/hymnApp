@@ -698,12 +698,12 @@ export const hymnsData = [
         Oh be washed in the blood of the Iamb
         `
     },
-    {
+   /*  {
         id: 23,
         name: '',
         content: `
 
         `
-    },
+    }, */
 
 ];
